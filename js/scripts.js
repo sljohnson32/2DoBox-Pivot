@@ -1,25 +1,26 @@
-function ideaTitle() {
-  return $('#title-input').val;
-}
-function ideaBody() {
-  return $('#body-input').val;
-}
+var ideaCount = 100;
+var $title = $('#title-input');
+var $body = $('#body-input');
 
 function NewIdea() {
-  debugger;
-  this.title = ideaTitle();
-  this.body = ideaBody();
+  this.id = 'UID' + ideaCount;
+  this.title = $title.val();
+  this.body = $body.val();
+  this.quality = 3;
   /*jshint multistr: true */
-  this.ideaBox = '<article class="idea-box">\
-      <h2>' + this.title + '</h2>\
-      <button type="button" name="button" id="delete-button"></button>\
-      <p>' + this.body + '</p>\
-      <button type="button" name="button" id="up-button"></button>\
-      <button type="button" name="button" id="down-button"></button>\
-    </article>';
+  this.html = "<article class='idea-box'>\
+      <h2>" + this.title + "</h2>\
+      <button type='button' name='button' id='delete-button'></button>\
+      <p>" + this.body + "</p>\
+      <button type='button' name='button' id='up-button'></button>\
+      <button type='button' name='button' id='down-button'></button>\
+    </article>";
+  ideaCount++;
 }
 
 $('#save-button').on('click', function() {
     var newIdeaBox = new NewIdea();
-    $('.idea-containter').append(newIdeaBox.ideaBox);
+    var storageId = newIdeaBox.id;
+    localStorage.setItem(storageId, JSON.stringify(newIdeaBox));
+    $('.idea-container').append(newIdeaBox.html);
   });
