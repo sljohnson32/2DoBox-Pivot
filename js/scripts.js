@@ -18,9 +18,16 @@ function NewIdea() {
   ideaCount++;
 }
 
+function setStorage(object) {
+  localStorage.setItem(object.id, JSON.stringify(object));
+}
+
+function getStorage(id) {
+  return JSON.parse(localStorage.getItem(id));
+}
+
 $('#save-button').on('click', function() {
     var newIdeaBox = new NewIdea();
-    var storageId = newIdeaBox.id;
-    localStorage.setItem(storageId, JSON.stringify(newIdeaBox));
+    setStorage(newIdeaBox);
     $('.idea-container').append(newIdeaBox.html);
   });
