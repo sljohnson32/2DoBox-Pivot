@@ -1,25 +1,21 @@
-function ideaTitle() {
-  return $('#title-input').val;
-}
-function ideaBody() {
-  return $('#body-input').val;
-}
+var $title = $('#title-input');
+var $body = $('#body-input');
 
 function NewIdea() {
-  debugger;
-  this.title = ideaTitle();
-  this.body = ideaBody();
+  this.title = $title.value;
+  this.body = $body.value;
   /*jshint multistr: true */
-  this.ideaBox = '<article class="idea-box">\
-      <h2>' + this.title + '</h2>\
-      <button type="button" name="button" id="delete-button"></button>\
-      <p>' + this.body + '</p>\
-      <button type="button" name="button" id="up-button"></button>\
-      <button type="button" name="button" id="down-button"></button>\
-    </article>';
+  this.html = "<article class='idea-box'>\
+      <h2>" + this.title + "</h2>\
+      <button type='button' name='button' id='delete-button'></button>\
+      <p>" + this.body + "</p>\
+      <button type='button' name='button' id='up-button'></button>\
+      <button type='button' name='button' id='down-button'></button>\
+    </article>";
 }
 
 $('#save-button').on('click', function() {
+    console.log("Save button is working");
     var newIdeaBox = new NewIdea();
-    $('.idea-containter').append(newIdeaBox.ideaBox);
+    $('.idea-container').append(newIdeaBox.html);
   });
