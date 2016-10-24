@@ -6,12 +6,13 @@ body {
 header {
   background: #E5F3F2;
   font-family: "Roboto-Slab", serif;
+  font-weight: 800;
   padding: 15px;
 }
 
 header h1 {
   margin: 10px auto;
-  font-size: 2.5em
+  font-size: 2.5em;
 }
 
 article {
@@ -20,14 +21,17 @@ article {
 
 input {
   display: block;
-  border: thin solid #D1D3D4;
+  border: 3px solid #D1D3D4;
+
 }
 
-input, #save-button{
+input, #save-button, #search-box {
   display: block;
   margin: 20px auto;
   padding: 5px;
   width: 90%;
+  font-size: 1em;
+  color: #D1D3D4;
 }
 
 p {
@@ -42,11 +46,15 @@ h1, h2, #quality-rating {
   color: #00A79D;
 }
 
+#body-input {
+  height: 7em;
+}
 
 #save-button {
   background: #00A79D;
   color: #FFFFFF;
   border: none;
+  width: 93%
 }
 
 #save-button:hover {
