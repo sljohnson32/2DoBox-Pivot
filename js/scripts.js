@@ -29,5 +29,7 @@ function getStorage(id) {
 $('#save-button').on('click', function() {
     var newIdeaBox = new NewIdea();
     setStorage(newIdeaBox);
+    $('#title-input').val('');
+    $('#body-input').val('');
     $('.idea-container').append(newIdeaBox.html);
   });
