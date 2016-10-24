@@ -11,12 +11,14 @@
   <body>
     <header>
       <h1><span class="idea-header">idea</span>box</h1>
-      <input type="text" name="title" value="" id="title-input">
-      <input type="text" name="body" value="" id="body-input">
-      <button type="button" name="button" id="save-button"></button>
+      <div class="input-container">
+        <input type="text" name="title" value="" placeholder="Title" id="title-input">
+        <input type="text" name="body" value="" placeholder="Body" id="body-input">
+      </div>
+        <button type="button" name="button" id="save-button">save</button>
     </header>
     <section class="idea-container">
-      <input type="button" name="name" value="" id="search-box">
+      <input type="button" name="name" value="" placeholder="Search" id="search-box">
       <article class="idea-box">
         <h2>Example 1</h2>
         <button type="button" name="button" id="delete-button"></button>

@@ -1,14 +1,33 @@
 body {
   font-family: "Open-Sans", sans-serif;
+  text-align: center;
 }
 
 header {
   background: #E5F3F2;
   font-family: "Roboto-Slab", serif;
+  padding: 15px;
+}
+
+header h1 {
+  margin: 10px auto;
+  font-size: 2.5em
 }
 
 article {
   border-bottom: 2px solid #D1D3D4;
+}
+
+input {
+  display: block;
+  border: thin solid #D1D3D4;
+}
+
+input, #save-button{
+  display: block;
+  margin: 20px auto;
+  padding: 5px;
+  width: 90%;
 }
 
 p {
@@ -19,17 +38,15 @@ h1, h2, #quality-rating {
   color: #6D6E71;
 }
 
-
-
-
-
 .idea-header {
   color: #00A79D;
 }
 
+
 #save-button {
   background: #00A79D;
   color: #FFFFFF;
+  border: none;
 }
 
 #save-button:hover {
