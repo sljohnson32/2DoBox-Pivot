@@ -13,15 +13,18 @@ function NewIdea() {
   this.body = $body.val();
   this.quality = 3;
   /*jshint multistr: true */
-  this.html = "<article class='idea-box' id=" + "'" + this.id + "'" + ">\
-      <h2>" + this.title + "</h2>\
-      <div class='quality-container'>\
-      <button type='button' name='button' id='delete-button'></button>\
-      <p>" + this.body + "</p>\
-      <button type='button' name='button' class='up-button'></button>\
-      <button type='button' name='button' class='down-button'></button>\
-      <h4 class='quality-rating'>quality : swill</h4>\
-      </div>\
+  this.html =
+    "<article class='idea-box' id=" + "'" + this.id + "'" + ">\
+        <div class='flexer'>\
+          <h2>" + this.title + "</h2>\
+          <button type='button' name='button' class='delete-button'></button>\
+        </div>\
+        <p>" + this.body + "</p>\
+        <div class='quality-container'>\
+          <button type='button' name='button' class='up-button'></button>\
+          <button type='button' name='button' class='down-button'></button>\
+          <h4 class='quality-rating'>quality : swill</h4>\
+        </div>\
     </article>";
     ideaCount++;
 }
@@ -37,6 +40,10 @@ function ideaCountStorage(id) {
 
 function getStorage(id) {
   return JSON.parse(localStorage.getItem(id));
+}
+
+function deleteIdeaStorage(id) {
+  localStorage.removeItem(id);
 }
 
 function loadStorage () {
@@ -60,3 +67,8 @@ $('#save-button').on('click', function() {
     $('#body-input').val('');
     $('.idea-container').prepend(newIdeaBox.html);
   });
+
+$('.idea-container').on('click', '.delete-button', function() {
+    $(this).parent().parent().remove();
+}
+);
