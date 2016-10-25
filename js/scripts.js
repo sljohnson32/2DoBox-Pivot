@@ -11,17 +11,16 @@ function NewIdea() {
   this.id = ideaCount;
   this.title = $title.val();
   this.body = $body.val();
-  this.quality = 3;
   /*jshint multistr: true */
   this.html =
     "<article class='idea-box' id=" + "'" + this.id + "'" + ">\
         <div class='flexer'>\
           <h2>" + this.title + "</h2>\
-          <article class='quality'>1</article>\
           <button type='button' name='button' class='delete-button'></button>\
         </div>\
         <p>" + this.body + "</p>\
         <div class='quality-container'>\
+          <article class='quality'>" + 1 + "</article>\
           <button type='button' name='button' class='up-button'></button>\
           <button type='button' name='button' class='down-button'></button>\
           <h4 class='quality-rating'>quality : swill</h4>\
@@ -74,5 +73,7 @@ $('.idea-container').on('click', '.delete-button', function() {
 });
 
 $('.idea-container').on('click', '.up-button', function() {
-    $(this).siblings('h4').text('quality: '+ 'some quality');
+    var qualitynumber = $(this).siblings('.quality').val();
+    var qualitynumbernew = qualitynumber++;
+    $(this).siblings('.quality').text(qualitynumbernew);
 });
