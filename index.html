@@ -13,7 +13,7 @@
       <h1><span class="idea-header">idea</span>box</h1>
       <div class="input-container">
         <input type="text" name="title" value="" placeholder="Title" id="title-input">
-        <input type="text" name="body" value="" placeholder="Body" id="body-input">
+        <input type="text-area" name="body" value="" placeholder="Body" id="body-input">
       </div>
         <button type="button" name="button" id="save-button">save</button>
     </header>
@@ -25,9 +25,11 @@
         <p>
           Some example ideas.
         </p>
-        <button type="button" name="button" id="up-button"></button>
-        <button type="button" name="button" id="down-button"></button>
-        <h4 id="quality-rating">quality : swill</h4>
+        <div class="quality-container">
+          <button type="button" name="button" id="up-button"></button>
+          <button type="button" name="button" id="down-button"></button>
+          <h4 id="quality-rating">quality : swill</h4>
+        </div>
       </article>
     </section>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

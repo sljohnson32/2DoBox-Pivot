@@ -10,10 +10,13 @@ function NewIdea() {
   /*jshint multistr: true */
   this.html = "<article class='idea-box'>\
       <h2>" + this.title + "</h2>\
+      <div class='quality-container'>\
       <button type='button' name='button' id='delete-button'></button>\
       <p>" + this.body + "</p>\
       <button type='button' name='button' id='up-button'></button>\
       <button type='button' name='button' id='down-button'></button>\
+      <h4 id='quality-rating'>quality : swill</h4>\
+      </div>\
     </article>";
   ideaCount++;
 }
