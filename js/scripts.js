@@ -17,6 +17,7 @@ function NewIdea() {
     "<article class='idea-box' id=" + "'" + this.id + "'" + ">\
         <div class='flexer'>\
           <h2>" + this.title + "</h2>\
+          <article class='quality'>1</article>\
           <button type='button' name='button' class='delete-button'></button>\
         </div>\
         <p>" + this.body + "</p>\
