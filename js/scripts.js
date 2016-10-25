@@ -23,7 +23,7 @@ function NewIdea() {
           <article class='quality'>" + 1 + "</article>\
           <button type='button' name='button' class='up-button'></button>\
           <button type='button' name='button' class='down-button'></button>\
-          <h4 class='quality-rating'>quality : swill</h4>\
+          <h4 class='quality-rating'>quality: swill</h4>\
         </div>\
     </article>";
     ideaCount++;
@@ -58,6 +58,10 @@ function loadStorage () {
   }
 }
 
+function searchBox () {
+  // User text
+}
+
 //button functionality
 $('#save-button').on('click', function() {
     var newIdeaBox = new NewIdea();
@@ -73,7 +77,15 @@ $('.idea-container').on('click', '.delete-button', function() {
 });
 
 $('.idea-container').on('click', '.up-button', function() {
-    var qualitynumber = $(this).siblings('.quality').val();
-    var qualitynumbernew = qualitynumber++;
-    $(this).siblings('.quality').text(qualitynumbernew);
+    debugger
+    var $quality = $(this).siblings('.quality-rating');
+    if ($quality.text() === 'quality: swill') {
+      $quality.text('quality: plausible');
+    }
+        else if ($quality.text() === 'quality: plausible') {
+          $quality.text('quality: genius');
+    }
+          else {
+            $quality.text('quality: swillss');
+    }
 });
