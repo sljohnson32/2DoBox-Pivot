@@ -18,9 +18,9 @@ function NewIdea() {
       <div class='quality-container'>\
       <button type='button' name='button' id='delete-button'></button>\
       <p>" + this.body + "</p>\
-      <button type='button' name='button' id='up-button'></button>\
-      <button type='button' name='button' id='down-button'></button>\
-      <h4 id='quality-rating'>quality : swill</h4>\
+      <button type='button' name='button' class='up-button'></button>\
+      <button type='button' name='button' class='down-button'></button>\
+      <h4 class='quality-rating'>quality : swill</h4>\
       </div>\
     </article>";
     ideaCount++;
