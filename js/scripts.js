@@ -1,7 +1,3 @@
-$(document).ready(function() {
-  loadStorage();
-});
-
 var ideaCount = 100;
 var $title = $('#title-input');
 var $body = $('#body-input');
@@ -35,7 +31,7 @@ function setIdeaStorage(id, object) {
 }
 
 function ideaCountStorage(id) {
-  localStorage.setItem(ideaCount, id);
+  localStorage.setItem('ideaCountTracker', id);
 }
 
 function getStorage(id) {
@@ -48,8 +44,8 @@ function deleteIdeaStorage(id) {
 
 function loadStorage () {
   for (var i = 0; i < localStorage.length; i++) {
-    if (localStorage.key(i) === ideaCount) {
-      $('ideaCount').val(localStorage.getItem(ideaCount));
+    if (localStorage.key(i) === 'ideaCountTracker') {
+      ideaCount = localStorage.getItem(i);
     }
     else {
       var ideaInfo = getStorage(localStorage.key(i));
@@ -76,4 +72,8 @@ $('.idea-container').on('click', '.up-button', function() {
     var qualitynumber = $(this).siblings('.quality').val();
     var qualitynumbernew = qualitynumber++;
     $(this).siblings('.quality').text(qualitynumbernew);
+});
+
+$(document).ready(function() {
+  loadStorage();
 });
