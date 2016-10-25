@@ -1,6 +1,6 @@
-// $(document).ready() {
-//   for
-// };
+$(document).ready(function() {
+  loadStorage();
+});
 
 var ideaCount = 100;
 var $title = $('#title-input');
