@@ -23,7 +23,7 @@ function NewIdea() {
       <h4 id='quality-rating'>quality : swill</h4>\
       </div>\
     </article>";
-  ideaCount++;
+    ideaCount++;
 }
 
 //storage functionality
@@ -46,7 +46,7 @@ function loadStorage () {
     }
     else {
       var ideaInfo = getStorage(localStorage.key(i));
-      $('.idea-container').append(ideaInfo.html);
+      $('.idea-container').prepend(ideaInfo.html);
     }
   }
 }
