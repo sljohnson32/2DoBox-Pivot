@@ -86,21 +86,17 @@ $('.idea-container').on('click', '.delete-button', function() {
 });
 
 $('.idea-container').on('click', '.up-button', function() {
-    debugger
     var $quality = $(this).siblings('.quality-rating');
     if ($quality.text() === 'quality: swill') {
       $quality.text('quality: plausible');
-    }
-        else if ($quality.text() === 'quality: plausible') {
-          $quality.text('quality: genius');
-    }
-          else {
-            $quality.text('quality: swill');
+    } else if ($quality.text() === 'quality: plausible') {
+      $quality.text('quality: genius');
+    } else {
+      $quality.text('quality: swill');
     }
 });
 
 $('.idea-container').on('click', '.down-button', function() {
-    debugger
     var $quality = $(this).siblings('.quality-rating');
     if ($quality.text() === 'quality: genius') {
       $quality.text('quality: plausible');
