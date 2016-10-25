@@ -25,11 +25,13 @@ article {
 
 article h2 {
   float: left;
+  font-size: 1.4em;
 }
 
 input {
   display: block;
   border: 3px solid #D1D3D4;
+  color: #939598;
 }
 
 input, p, #save-button, #search-box {
@@ -46,7 +48,7 @@ p {
   margin: 30px 0px 20px 0px;
 }
 
-h1, h2, #quality-rating {
+h1, h2, .quality-rating {
   color: #6D6E71;
 }
 
@@ -57,6 +59,8 @@ h1, h2, #quality-rating {
 .idea-header {
   color: #00A79D;
 }
+
+.flexer {}
 
 #body-input {
   height: 7em;
@@ -74,31 +78,31 @@ h1, h2, #quality-rating {
 }
 
 
-#up-button {
+.up-button {
   background: url('../images/upvote.svg') no-repeat;
   float: left;
 }
 
- #up-button, #delete-button {
+ .up-button, .delete-button {
   border: none;
   height: 30px;
   width: 30px;
   margin: -10px;
 }
 
-#up-button:hover {
+.up-button:hover {
   background: url('../images/upvote-hover.svg') no-repeat;
 }
 
-#down-button:hover {
+.down-button:hover {
   background: url('../images/downvote-hover.svg') no-repeat;
 }
 
-#delete-button:hover {
+.delete-button:hover {
   background: url('../images/delete-hover.svg') no-repeat;
 }
 
-#down-button {
+.down-button {
   background: url('../images/downvote.svg') no-repeat;
   border: none;
   float: left;
@@ -107,15 +111,21 @@ h1, h2, #quality-rating {
   margin: -10px 15px;
 }
 
-#delete-button {
+.delete-button {
   background: url('../images/delete.svg') no-repeat;
   float: right;
 }
 
-#quality-rating {
+.quality-rating {
   display: inline-block;
   float: left;
 }
+
+*:focus {
+  box-shadow: none;
+  outline: 0;
+}
+
 
 @media (min-width: 650px) {
 
@@ -133,10 +143,11 @@ input {
   margin: 0px auto;
 }
 
+
 #save-button {
     width: 62%;
 }
 
 #search-box {
-
+    width: 60%;
 }

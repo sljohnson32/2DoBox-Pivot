@@ -17,18 +17,20 @@
       </div>
         <button type="button" name="button" id="save-button">save</button>
     </header>
+    <input type="text" name="name" value="" placeholder="Search" id="search-box">
     <section class="idea-container">
-      <input type="text" name="name" value="" placeholder="Search" id="search-box">
       <article class="idea-box">
-        <h2>Example 1</h2>
-        <button type="button" name="button" id="delete-button"></button>
+        <div class="flexer">
+          <h2>Example 1</h2>
+          <button type="button" name="button" class="delete-button"></button>
+        </div>
         <p>
           Some example ideas.
         </p>
         <div class="quality-container">
-          <button type="button" name="button" id="up-button"></button>
-          <button type="button" name="button" id="down-button"></button>
-          <h4 id="quality-rating">quality : swill</h4>
+          <button type="button" name="button" class="up-button"></button>
+          <button type="button" name="button" class="down-button"></button>
+          <h4 class="quality-rating"></h4>
         </div>
       </article>
     </section>
