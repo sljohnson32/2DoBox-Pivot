@@ -70,5 +70,8 @@ $('#save-button').on('click', function() {
 
 $('.idea-container').on('click', '.delete-button', function() {
     $(this).parent().parent().remove();
-}
-);
+});
+
+$('.idea-container').on('click', '.up-button', function() {
+    $(this).siblings('h4').text('quality: '+ 'some quality');
+});
