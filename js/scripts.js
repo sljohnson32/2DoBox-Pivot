@@ -48,7 +48,7 @@ function deleteIdeaStorage(id) {
 
 function loadStorage () {
   for (var i = 0; i < localStorage.length; i++) {
-    if (localStorage.key(i) !== '.ideaCountTracker') {
+    if (localStorage.key(i) !== 'ideaCountTracker') {
       var ideaInfo = getStorage(localStorage.key(i));
       $('.idea-container').prepend(ideaInfo.html);
     }
@@ -57,8 +57,8 @@ function loadStorage () {
 }
 
 function getIdeaCount() {
-    if (ideaCount <= localStorage.getItem('.ideaCountTracker')) {
-      ideaCount = localStorage.getItem('.ideaCountTracker').val();
+    if (localStorage.getItem('ideaCountTracker') !== null) {
+      ideaCount = JSON.parse(localStorage.getItem('ideaCountTracker'));
     }
       else {
         ideaCount = 100;
@@ -73,7 +73,7 @@ function searchBox () {
 $('#save-button').on('click', function() {
     var newIdeaBox = new NewIdea();
     setIdeaStorage(newIdeaBox.id, newIdeaBox);
-    ideaCountStorage(newIdeaBox.id);
+    ideaCountStorage(ideaCount);
     $('#title-input').val('');
     $('#body-input').val('');
     $('.idea-container').prepend(newIdeaBox.html);
