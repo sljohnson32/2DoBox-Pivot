@@ -69,6 +69,8 @@ $('#save-button').on('click', function() {
   });
 
 $('.idea-container').on('click', '.delete-button', function() {
+    var ideaId = $(this).parent().parent().attr(id);
     $(this).parent().parent().remove();
+
 }
 );
