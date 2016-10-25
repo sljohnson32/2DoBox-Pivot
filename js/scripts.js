@@ -59,7 +59,7 @@ function loadStorage () {
 }
 
 function searchBox () {
-  // User text
+  // User text should do a query search of two elements for simliar text
 }
 
 //button functionality
@@ -86,6 +86,20 @@ $('.idea-container').on('click', '.up-button', function() {
           $quality.text('quality: genius');
     }
           else {
-            $quality.text('quality: swillss');
+            $quality.text('quality: swill');
+    }
+});
+
+$('.idea-container').on('click', '.down-button', function() {
+    debugger
+    var $quality = $(this).siblings('.quality-rating');
+    if ($quality.text() === 'quality: genius') {
+      $quality.text('quality: plausible');
+    }
+        else if ($quality.text() === 'quality: plausible') {
+          $quality.text('quality: swill');
+    }
+          else {
+            $quality.text('quality: genius');
     }
 });
