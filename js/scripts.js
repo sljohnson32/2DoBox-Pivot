@@ -11,7 +11,6 @@ function NewIdea() {
   this.id = ideaCount;
   this.title = $title.val();
   this.body = $body.val();
-  this.quality = 3;
   /*jshint multistr: true */
   this.html =
     "<article class='idea-box' id=" + "'" + this.id + "'" + ">\
@@ -21,6 +20,7 @@ function NewIdea() {
         </div>\
         <p>" + this.body + "</p>\
         <div class='quality-container'>\
+          <article class='quality'>" + 1 + "</article>\
           <button type='button' name='button' class='up-button'></button>\
           <button type='button' name='button' class='down-button'></button>\
           <h4 class='quality-rating'>quality : swill</h4>\
@@ -35,7 +35,7 @@ function setIdeaStorage(id, object) {
 }
 
 function ideaCountStorage(id) {
-  localStorage.setItem(ideaCount, id);
+  localStorage.setItem('ideaCountTracker', id);
 }
 
 function getStorage(id) {
@@ -48,14 +48,21 @@ function deleteIdeaStorage(id) {
 
 function loadStorage () {
   for (var i = 0; i < localStorage.length; i++) {
-    if (localStorage.key(i) === ideaCount) {
-      $('ideaCount').val(localStorage.getItem(ideaCount));
-    }
-    else {
+    if (localStorage.key(i) !== '.ideaCountTracker') {
       var ideaInfo = getStorage(localStorage.key(i));
       $('.idea-container').prepend(ideaInfo.html);
     }
   }
+  getIdeaCount();
+}
+
+function getIdeaCount() {
+    if (ideaCount <= localStorage.getItem('.ideaCountTracker')) {
+      ideaCount = localStorage.getItem('.ideaCountTracker').val();
+    }
+      else {
+        ideaCount = 100;
+      }
 }
 
 //button functionality
@@ -69,8 +76,13 @@ $('#save-button').on('click', function() {
   });
 
 $('.idea-container').on('click', '.delete-button', function() {
-    var ideaId = $(this).parent().parent().attr(id);
+    var deleteID = $(this).parent().parent().attr('id');
+    localStorage.removeItem(deleteID);
     $(this).parent().parent().remove();
+});
 
-}
-);
+$('.idea-container').on('click', '.up-button', function() {
+    var qualitynumber = $(this).siblings('.quality').val();
+    var qualitynumbernew = qualitynumber++;
+    $(this).siblings('.quality').text(qualitynumbernew);
+});

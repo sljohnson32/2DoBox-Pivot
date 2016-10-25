@@ -60,6 +60,10 @@ h1, h2, .quality-rating {
   color: #00A79D;
 }
 
+.quality {
+  display: none;
+}
+
 .flexer {}
 
 #body-input {
