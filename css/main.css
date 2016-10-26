@@ -28,13 +28,13 @@ article h2 {
   font-size: 1.4em;
 }
 
-input {
+input, textarea {
 a  display: block;
-  border: 3px solid #D1D3D4;
+  border: 2px solid #D1D3D4;
   color: #939598;
 }
 
-input, p, #save-button, #search-box {
+input, p, textarea, #save-button, #search-box {
   display: block;
   margin: 20px auto;
   padding: 5px;
@@ -61,6 +61,10 @@ h1, h2, .quality-rating {
 
 .quality {
   display: none;
+}
+
+textarea {
+  resize: none;
 }
 
 .flexer {}
@@ -157,7 +161,7 @@ header {
 
 }
 
-input {
+input, textarea {
   width: 60%;
 }
 

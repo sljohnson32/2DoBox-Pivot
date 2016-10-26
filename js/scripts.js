@@ -29,11 +29,7 @@ function NewIdea(title, body, quality) {
 }
 
 
-// NewIdea.keypress(function(event){
-//   if (event.which == 13) {
-//     $('#save-button').click();
-//   }
-// });
+
 
 //storage functionality
 function setIdeaStorage(id, object) {
@@ -91,6 +87,17 @@ $(document).ready(function(){
       $('#save-button').prop('disabled', false);
     } else {
       $('#save-button').prop('disabled', true);
+    }
+  });
+
+  $('.all-input').keypress(function(event){
+    if (event.which == 13) {
+      $('.idea-container').prepend(NewIdea($title.val(), $body.val(), 'quality: swill'));
+      setIdeaStorage(ideaCount, NewIdea($title.val(), $body.val(), 'quality: swill'));
+      ideaCount++;
+      ideaCountStorage(ideaCount);
+      $('#title-input').val('');
+      $('#body-input').val('');
     }
   });
 
