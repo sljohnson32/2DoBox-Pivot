@@ -97,8 +97,9 @@ $(document).ready(function(){
 
   $('.all-input').keypress(function(event){
     if (event.which == 13) {
-      $('.idea-container').prepend(NewIdea($title.val(), $body.val(), 'quality: swill'));
-      setIdeaStorage(ideaCount, NewIdea($title.val(), $body.val(), 'quality: swill'));
+      var newIdeaObject = new NewIdea(ideaCount, $title.val(), $body.val(), 'quality: swill');
+      newIdeaBoxCreator(newIdeaObject);
+      setIdeaStorage(this.id, newIdeaObject);
       ideaCount++;
       ideaCountStorage(ideaCount);
       $('#title-input').val('');
