@@ -28,7 +28,7 @@ function newIdeaBoxCreator(object) {
       <p contenteditable='true'>${object.body}</p>
       <div class='quality-container'>
         <button type='button' name='button' class='up-button'></button>
-        <button type='button' name='button' disabled='true' class='down-button'></button>
+        <button type='button' name='button' class='down-button'></button>
         <h4 class='quality-rating'>${object.quality}</h4>
       </div>
   </article>`);
@@ -37,6 +37,18 @@ function newIdeaBoxCreator(object) {
 //storage functionality
 function setIdeaStorage(id, object) {
   localStorage.setItem(id, JSON.stringify(object));
+}
+
+function updateIdea(id, attribute, newValue) {
+  var currentIdea = getStorage(id);
+  if (attribute === 'quality') {
+    currentIdea.quality = newValue;
+  } else if (attribute === 'title') {
+    currentIdea.title = newValue;
+  } else if (attribute === 'body') {
+    currentIdea.body = newValue;
+  }
+  setIdeaStorage(id, currentIdea);
 }
 
 function ideaCountStorage(id) {
@@ -51,11 +63,27 @@ function deleteIdeaStorage(id) {
   localStorage.removeItem(id);
 }
 
+function checkButtons(object) {
+  var id = object.id;
+  var $upButton = $(`#${id}`).children().children('.up-button');
+  var $downButton = $(`#${id}`).children().children('.down-button');
+  if (object.quality === "quality: swill") {
+    $downButton.prop('disabled', true);
+  } else if (object.quality === "quality: plausible") {
+    $downButton.prop('disabled', false);
+    $upButton.prop('disabled', false);
+  } else if (object.quality === "quality: genius") {
+    $upButton.prop('disabled', true);
+  }
+}
+
+
 function loadStorage () {
   for (var i = 0; i < localStorage.length; i++) {
     if (localStorage.key(i) !== 'ideaCountTracker') {
       var storedInfo = getStorage(localStorage.key(i));
       newIdeaBoxCreator(storedInfo);
+      checkButtons(storedInfo);
     }
   }
   getIdeaCount();
@@ -68,7 +96,6 @@ function getIdeaCount() {
         ideaCount = 100;
       }
 }
-
 
 $(document).ready(function(){
  $('#search-box').keyup(function(){
@@ -110,6 +137,7 @@ $(document).ready(function(){
 $('#save-button').on('click', function() {
     var newIdeaObject = new NewIdea(ideaCount, $title.val(), $body.val(), 'quality: swill');
     newIdeaBoxCreator(newIdeaObject);
+    checkButtons(newIdeaObject);
     setIdeaStorage(ideaCount, newIdeaObject);
     ideaCount++;
     ideaCountStorage(ideaCount);
@@ -124,41 +152,36 @@ $('.idea-container').on('click', '.delete-button', function() {
     $(this).parent().parent().remove();
 });
 
-// function updateIdea(id, attribute, newValue) {
-//   // find idea with id
-//   idea.attribute = newvalue
-//   if (attribute === 'waulity') {
-//     // idea.quality = newValue
-//   } else if (attribute === 'title') {
-//
-//   }
-//   // set idea to localStoreage
-// }
-
 $('.idea-container').on('click', '.up-button', function() {
     var $quality = $(this).siblings('.quality-rating');
     var $downButton = $(this).parent().children('.down-button');
+    var $currentId = $(this).parent().parent().attr('id');
     if ($quality.text() === 'quality: swill') {
       $quality.text('quality: plausible');
       $(this).prop('disabled', false);
       $downButton.prop('disabled', false);
+      updateIdea($currentId, 'quality','quality: plausible');
     } else if ($quality.text() === 'quality: plausible') {
       $quality.text('quality: genius');
       $(this).prop('disabled', true);
       $downButton.prop('disabled', false);
+      updateIdea($currentId, 'quality','quality: genius');
     }
 });
 
 $('.idea-container').on('click', '.down-button', function() {
     var $quality = $(this).siblings('.quality-rating');
     var $upButton = $(this).parent().children('.up-button');
+    var $currentId = $(this).parent().parent().attr('id');
     if ($quality.text() === 'quality: genius') {
       $quality.text('quality: plausible');
       $(this).prop('disabled', false);
       $upButton.prop('disabled', false);
+      updateIdea($currentId, 'quality', "quality: plausible");
     } else if ($quality.text() === 'quality: plausible') {
       $quality.text('quality: swill');
       $(this).prop('disabled', true);
       $upButton.prop('disabled', false);
+      updateIdea($currentId, 'quality', "quality: swill");
     }
 });
