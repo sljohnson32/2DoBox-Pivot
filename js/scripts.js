@@ -13,23 +13,28 @@ var $down = $('.down-button');
 
 //creating new ideabox
 /*jshint multistr: true */
-function NewIdea(title, body, quality) {
-  return "<article class='idea-box'>\
+
+function NewIdea(id, title, body, quality) {
+  this.id = id;
+  this.title = title;
+  this.body = body;
+  this.quality = quality;
+}
+
+function newIdeaBoxCreator(object) {
+  $('.idea-container').prepend("<article class='idea-box'>\
       <div class='flexer'>\
-        <h2 contenteditable='true'>" + title + "</h2>\
+        <h2 contenteditable='true'>" + object.title + "</h2>\
         <button type='button' name='button' class='delete-button'></button>\
       </div>\
-      <p contenteditable='true'>" + body + "</p>\
+      <p contenteditable='true'>" + object.body + "</p>\
       <div class='quality-container'>\
         <button type='button' name='button' class='up-button'></button>\
         <button type='button' name='button' disabled='true' class='down-button'></button>\
-        <h4 class='quality-rating'>" + quality + "</h4>\
+        <h4 class='quality-rating'>" + object.quality + "</h4>\
       </div>\
-  </article>";
+  </article>");
 }
-
-
-
 
 //storage functionality
 function setIdeaStorage(id, object) {
@@ -104,8 +109,9 @@ $(document).ready(function(){
 
 //button functionality
 $('#save-button').on('click', function() {
-    $('.idea-container').prepend(NewIdea($title.val(), $body.val(), 'quality: swill'));
-    setIdeaStorage(ideaCount, NewIdea($title.val(), $body.val(), 'quality: swill'));
+    var newIdeaObject = new NewIdea(ideaCount, $title.val(), $body.val(), 'quality: swill');
+    newIdeaBoxCreator(newIdeaObject);
+    setIdeaStorage(this.id, newIdeaObject);
     ideaCount++;
     ideaCountStorage(ideaCount);
     $('#title-input').val('');
