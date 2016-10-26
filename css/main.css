@@ -126,6 +126,7 @@ textarea {
 .delete-button {
   background: url('../images/delete.svg') no-repeat;
   float: right;
+  margin: -3px;
 }
 
 .quality-rating {
