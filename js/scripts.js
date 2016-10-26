@@ -29,11 +29,7 @@ function NewIdea(title, body, quality) {
 }
 
 
-// NewIdea.keypress(function(event){
-//   if (event.which == 13) {
-//     $('#save-button').click();
-//   }
-// });
+
 
 //storage functionality
 function setIdeaStorage(id, object) {
@@ -94,6 +90,18 @@ $(document).ready(function(){
     }
   });
 
+  $('.all-input').keypress(function(event){
+    if (event.which == 13) {
+      $('.idea-container').prepend(NewIdea($title.val(), $body.val(), 'quality: swill'));
+      setIdeaStorage(ideaCount, NewIdea($title.val(), $body.val(), 'quality: swill'));
+      ideaCount++;
+      ideaCountStorage(ideaCount);
+      $('#title-input').val('');
+      $('#body-input').val('');
+      $('#save-button').prop('disabled', true);
+    }
+  });
+
 //button functionality
 $('#save-button').on('click', function() {
     $('.idea-container').prepend(NewIdea($title.val(), $body.val(), 'quality: swill'));
@@ -102,6 +110,7 @@ $('#save-button').on('click', function() {
     ideaCountStorage(ideaCount);
     $('#title-input').val('');
     $('#body-input').val('');
+    $('#save-button').prop('disabled', true);
   });
 
 $('.idea-container').on('click', '.delete-button', function() {
@@ -113,16 +122,17 @@ $('.idea-container').on('click', '.delete-button', function() {
 $('.idea-container').on('click', '.up-button', function() {
     var $quality = $(this).siblings('.quality-rating');
     if ($quality.text() === 'quality: swill') {
-      $quality.text('quality: plausible', false);
+      $quality.text('quality: plausible');
       $('.down-button').prop('disabled', false);
-      $('.up-button').prop('disabled', false);
+      $(this).prop('disabled', false);
     }
         else if ($quality.text() === 'quality: plausible') {
           $quality.text('quality: genius');
-          $('.up-button').prop('disabled', false);
+          $(this).prop('disabled', false);
+          $('.down-button').prop('disabled', false);
     }
           else {
-            $('.up-button').prop('disabled', true);
+            $(this).prop('disabled', true);
     }
 });
 
@@ -130,14 +140,15 @@ $('.idea-container').on('click', '.down-button', function() {
     var $quality = $(this).siblings('.quality-rating');
     if ($quality.text() === 'quality: genius') {
       $quality.text('quality: plausible');
-      $('.down-button').prop('disabled', false);
-      $('.up-button').prop('disabled', false);
+      $(this).prop('disabled', false);
+      $('up-button').prop('disabled', false);
     }
         else if ($quality.text() === 'quality: plausible') {
           $quality.text('quality: swill');
-          $('.down-button').prop('disabled', false);
+          $(this).prop('disabled', false);
+          $('.up-button').prop('disabled', false);
     }
-          else {
-              $('.down-button').prop('disabled', true);
+          else  {
+              $(this).prop('disabled', true);
     }
 });
