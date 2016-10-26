@@ -23,7 +23,7 @@ function NewIdea(title, body, quality) {
       <div class='quality-container'>\
         <button type='button' name='button' class='up-button'></button>\
         <button type='button' name='button' class='down-button'></button>\
-        <h4 class='quality-rating'>quality: swill</h4>\
+        <h4 class='quality-rating'>quality: " + quality + "</h4>\
       </div>\
   </article>";
 }
@@ -102,8 +102,8 @@ $(document).ready(function(){
 
 //button functionality
 $('#save-button').on('click', function() {
-    $('.idea-container').prepend(NewIdea($title.val(), $body.val(), 1));
-    setIdeaStorage(ideaCount, NewIdea($title.val(), $body.val(), 1));
+    $('.idea-container').prepend(NewIdea($title.val(), $body.val(), 'swill'));
+    setIdeaStorage(ideaCount, NewIdea($title.val(), $body.val(), 'swill'));
     ideaCount++;
     ideaCountStorage(ideaCount);
     $('#title-input').val('');
