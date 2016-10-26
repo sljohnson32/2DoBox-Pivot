@@ -22,7 +22,7 @@ function NewIdea(id, title, body, quality) {
 }
 
 function newIdeaBoxCreator(object) {
-  $('.idea-container').prepend("<article class='idea-box'>\
+  $('.idea-container').prepend("<article id='" + object.id + "' " + "class='idea-box'>\
       <div class='flexer'>\
         <h2 contenteditable='true'>" + object.title + "</h2>\
         <button type='button' name='button' class='delete-button'></button>\
@@ -56,8 +56,8 @@ function deleteIdeaStorage(id) {
 function loadStorage () {
   for (var i = 0; i < localStorage.length; i++) {
     if (localStorage.key(i) !== 'ideaCountTracker') {
-      var ideaInfo = getStorage(localStorage.key(i));
-      $('.idea-container').prepend(ideaInfo.html);
+      var storedInfo = getStorage(localStorage.key(i));
+      newIdeaBoxCreator(storedInfo);
     }
   }
   getIdeaCount();
@@ -111,7 +111,7 @@ $(document).ready(function(){
 $('#save-button').on('click', function() {
     var newIdeaObject = new NewIdea(ideaCount, $title.val(), $body.val(), 'quality: swill');
     newIdeaBoxCreator(newIdeaObject);
-    setIdeaStorage(this.id, newIdeaObject);
+    setIdeaStorage(ideaCount, newIdeaObject);
     ideaCount++;
     ideaCountStorage(ideaCount);
     $('#title-input').val('');
