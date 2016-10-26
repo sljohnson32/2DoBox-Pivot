@@ -94,9 +94,10 @@ $(document).ready(function(){
 
   $('.all-input').keypress(function(event){
     if (event.which == 13) {
+      event.preventDefault();
       var newIdeaObject = new NewIdea(ideaCount, $title.val(), $body.val(), 'quality: swill');
       newIdeaBoxCreator(newIdeaObject);
-      setIdeaStorage(this.id, newIdeaObject);
+      setIdeaStorage(ideaCount, newIdeaObject);
       ideaCount++;
       ideaCountStorage(ideaCount);
       $('#title-input').val('');
@@ -123,36 +124,41 @@ $('.idea-container').on('click', '.delete-button', function() {
     $(this).parent().parent().remove();
 });
 
+// function updateIdea(id, attribute, newValue) {
+//   // find idea with id
+//   idea.attribute = newvalue
+//   if (attribute === 'waulity') {
+//     // idea.quality = newValue
+//   } else if (attribute === 'title') {
+//
+//   }
+//   // set idea to localStoreage
+// }
+
 $('.idea-container').on('click', '.up-button', function() {
     var $quality = $(this).siblings('.quality-rating');
+    var $downButton = $(this).parent().children('.down-button');
     if ($quality.text() === 'quality: swill') {
       $quality.text('quality: plausible');
-      $('.down-button').prop('disabled', false);
       $(this).prop('disabled', false);
-    }
-        else if ($quality.text() === 'quality: plausible') {
-          $quality.text('quality: genius');
-          $(this).prop('disabled', false);
-          $('.down-button').prop('disabled', false);
-    }
-          else {
-            $(this).prop('disabled', true);
+      $downButton.prop('disabled', false);
+    } else if ($quality.text() === 'quality: plausible') {
+      $quality.text('quality: genius');
+      $(this).prop('disabled', true);
+      $downButton.prop('disabled', false);
     }
 });
 
 $('.idea-container').on('click', '.down-button', function() {
     var $quality = $(this).siblings('.quality-rating');
+    var $upButton = $(this).parent().children('.up-button');
     if ($quality.text() === 'quality: genius') {
       $quality.text('quality: plausible');
       $(this).prop('disabled', false);
-      $('up-button').prop('disabled', false);
-    }
-        else if ($quality.text() === 'quality: plausible') {
-          $quality.text('quality: swill');
-          $(this).prop('disabled', false);
-          $('.up-button').prop('disabled', false);
-    }
-          else  {
-              $(this).prop('disabled', true);
+      $upButton.prop('disabled', false);
+    } else if ($quality.text() === 'quality: plausible') {
+      $quality.text('quality: swill');
+      $(this).prop('disabled', true);
+      $upButton.prop('disabled', false);
     }
 });
