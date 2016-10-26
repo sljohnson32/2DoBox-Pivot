@@ -28,6 +28,7 @@ article h2 {
 }
 
 input, textarea {
+  font-family: "Open-Sans", sans-serif;
   display: block;
   border: 2px solid #D1D3D4;
   color: #939598;
