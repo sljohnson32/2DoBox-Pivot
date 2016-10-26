@@ -30,6 +30,12 @@ function NewIdea(title, body, quality) {
   </article>";
 }
 
+// NewIdea.keypress(function(event){
+//   if (event.which == 13) {
+//     $('#save-button').click();
+//   }
+// });
+
 //storage functionality
 function setIdeaStorage(id, object) {
   localStorage.setItem(id, JSON.stringify(object));
@@ -66,10 +72,6 @@ function getIdeaCount() {
       }
 }
 
-// $('#search-box').keyup(function search() {
-//   var user = $userSearch.val();
-//   return user;
-// });
 
 $(document).ready(function(){
  $('#search-box').keyup(function(){
@@ -84,15 +86,6 @@ $(document).ready(function(){
    });
  });
 });
-
- // User text should do a query search of two elements for simliar text
-  // Can target $('h2') & $('p') to check against user...
-
-
-  // function search() {
-  //   var user = $userSearch.val();
-  //   return user;
-  // }
 
   $('.all-input').keyup(function saveDisable() {
     if ($title.val() && $body.val()) {

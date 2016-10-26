@@ -40,7 +40,6 @@ input, p, #save-button, #search-box {
   padding: 5px;
   width: 90%;
   font-size: 1em;
-  color: #D1D3D4;
 }
 
 p {
@@ -130,6 +129,9 @@ h1, h2, .quality-rating {
   outline: 0;
 }
 
+input:focus {
+  color: #939598;
+}
 
 .down-button[disabled]:hover {
  background: url('../images/downvote.svg') no-repeat;
