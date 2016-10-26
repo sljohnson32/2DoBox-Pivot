@@ -98,6 +98,7 @@ $(document).ready(function(){
       ideaCountStorage(ideaCount);
       $('#title-input').val('');
       $('#body-input').val('');
+      $('#save-button').prop('disabled', true);
     }
   });
 
@@ -109,6 +110,7 @@ $('#save-button').on('click', function() {
     ideaCountStorage(ideaCount);
     $('#title-input').val('');
     $('#body-input').val('');
+    $('#save-button').prop('disabled', true);
   });
 
 $('.idea-container').on('click', '.delete-button', function() {
