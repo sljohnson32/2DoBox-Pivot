@@ -139,6 +139,12 @@ h1, h2, .quality-rating {
   background: url('../images/upvote.svg') no-repeat;
 }
 
+
+
+#save-button[disabled]:hover, #save-button[disabled] {
+ background: grey;
+}
+
 @media (min-width: 650px) {
 
 header {

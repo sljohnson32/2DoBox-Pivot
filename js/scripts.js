@@ -1,5 +1,6 @@
 $(document).ready(function() {
   loadStorage();
+  $('#save-button').prop('disabled', true);
 });
 
 var ideaCount = 100;
@@ -19,10 +20,10 @@ function NewIdea() {
   this.html =
     "<article class='idea-box' id=" + "'" + this.id + "'" + ">\
         <div class='flexer'>\
-          <h2>" + this.title + "</h2>\
+          <h2 contenteditable='true'>" + this.title + "</h2>\
           <button type='button' name='button' class='delete-button'></button>\
         </div>\
-        <p>" + this.body + "</p>\
+        <p contenteditable='true'>" + this.body + "</p>\
         <div class='quality-container'>\
           <article class='quality'>" + 1 + "</article>\
           <button type='button' name='button' class='up-button'></button>\
@@ -71,14 +72,23 @@ $('#search-box').on('keyup change', function () {
   // Can target $('h2') & $('p') to check against user...
 
 
-  // function search() {
-  //   var user = $userSearch.val();
-  //   return user;
-  // }
+  function search() {
+    var user = $userSearch.val();
+    return user;
+  }
+
+  $('.all-input').keyup(function saveDisable() {
+    if ($title.val() && $body.val()) {
+      $('#save-button').prop('disabled', false);
+    } else {
+      $('#save-button').prop('disabled', true);
+    }
+  });
 
 //button functionality
 $('#save-button').on('click', function() {
     var newIdeaBox = new NewIdea();
+    saveDisable();
     setIdeaStorage(newIdeaBox.id, newIdeaBox);
     ideaCountStorage(newIdeaBox.id);
     $('#title-input').val('');
