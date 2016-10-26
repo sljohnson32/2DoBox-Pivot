@@ -102,14 +102,14 @@ $(document).ready(function(){
 
 //button functionality
 $('#save-button').on('click', function() {
-    $('.idea-container').prepend(NewIdea($title.val(), $body.val(), defaultQuality));
-    setIdeaStorage(ideaCount, NewIdea($title.val(), $body.val(), defaultQuality));
-    ideaCount++;
-    ideaCountStorage(ideaCount);
+    var newIdeaBox = new NewIdea();
+    setIdeaStorage(newIdeaBox.id, newIdeaBox);
+    ideaCountStorage(newIdeaBox.id);
     $('#title-input').val('');
     $('#body-input').val('');
+    $('.idea-container').prepend(newIdeaBox.html);
   });
-
+  
 $('.idea-container').on('click', '.delete-button', function() {
     var deleteID = $(this).parent().parent().attr('id');
     localStorage.removeItem(deleteID);
