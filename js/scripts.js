@@ -102,6 +102,8 @@ $('#save-button').on('click', function() {
   });
 
 $('.idea-container').on('click', '.delete-button', function() {
+    var deleteID = $(this).parent().parent().attr('id');
+    localStorage.removeItem(deleteID);
     $(this).parent().parent().remove();
 });
 
