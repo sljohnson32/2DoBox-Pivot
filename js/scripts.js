@@ -25,7 +25,6 @@ function NewIdea() {
         </div>\
         <p contenteditable='true'>" + this.body + "</p>\
         <div class='quality-container'>\
-          <article class='quality'>" + 1 + "</article>\
           <button type='button' name='button' class='up-button'></button>\
           <button type='button' name='button' class='down-button' disabled ='false'></button>\
           <h4 class='quality-rating'>quality: swill</h4>\
@@ -63,19 +62,33 @@ function loadStorage () {
   }
 }
 
-$('#search-box').on('keyup change', function () {
-  var user = $userSearch.val();
-  return user;
+// $('#search-box').keyup(function search() {
+//   var user = $userSearch.val();
+//   return user;
+// });
+
+$(document).ready(function(){
+ $('#search-box').keyup(function(){
+   var filter = $(this).val(), count = 0;
+   $('article').each(function(){
+     if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+       $(this).hide();
+     } else {
+       $(this).show();
+       count++;
+     }
+   });
+ });
 });
 
  // User text should do a query search of two elements for simliar text
   // Can target $('h2') & $('p') to check against user...
 
 
-  function search() {
-    var user = $userSearch.val();
-    return user;
-  }
+  // function search() {
+  //   var user = $userSearch.val();
+  //   return user;
+  // }
 
   $('.all-input').keyup(function saveDisable() {
     if ($title.val() && $body.val()) {
@@ -88,7 +101,6 @@ $('#search-box').on('keyup change', function () {
 //button functionality
 $('#save-button').on('click', function() {
     var newIdeaBox = new NewIdea();
-    saveDisable();
     setIdeaStorage(newIdeaBox.id, newIdeaBox);
     ideaCountStorage(newIdeaBox.id);
     $('#title-input').val('');
