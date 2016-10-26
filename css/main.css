@@ -29,7 +29,7 @@ article h2 {
 }
 
 input {
-  display: block;
+a  display: block;
   border: 3px solid #D1D3D4;
   color: #939598;
 }
@@ -69,11 +69,15 @@ h1, h2, .quality-rating {
   height: 7em;
 }
 
+#search-box {
+  width: 87%;
+}
+
 #save-button {
   background: #00A79D;
   color: #FFFFFF;
   border: none;
-  width: 92%
+  width: 94%
 }
 
 #save-button:hover {
@@ -165,9 +169,13 @@ input {
 
 
 #save-button {
-    width: 62%;
+    width: 61%;
 }
 
-#search-box {
+/*article {
     width: 60%;
+}*/
+
+#search-box {
+  width: 59.5%;
 }
