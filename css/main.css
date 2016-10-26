@@ -69,6 +69,10 @@ h1, h2, .quality-rating {
   height: 7em;
 }
 
+#search-box {
+  width: 87%;
+}
+
 #save-button {
   background: #00A79D;
   color: #FFFFFF;
@@ -168,9 +172,9 @@ input {
     width: 61%;
 }
 
-article {
+/*article {
     width: 60%;
-}
+}*/
 
 #search-box {
   width: 59.5%;

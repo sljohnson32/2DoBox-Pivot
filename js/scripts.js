@@ -16,10 +16,10 @@ var $down = $('.down-button');
 function NewIdea(title, body, quality) {
   return "<article class='idea-box'>\
       <div class='flexer'>\
-        <h2>" + title + "</h2>\
+        <h2 contenteditable='true'>" + title + "</h2>\
         <button type='button' name='button' class='delete-button'></button>\
       </div>\
-      <p>" + body + "</p>\
+      <p contenteditable='true'>" + body + "</p>\
       <div class='quality-container'>\
         <button type='button' name='button' class='up-button'></button>\
         <button type='button' name='button' class='down-button'></button>\
@@ -102,7 +102,6 @@ $('#save-button').on('click', function() {
     ideaCountStorage(ideaCount);
     $('#title-input').val('');
     $('#body-input').val('');
-    $('.idea-container').prepend(newIdeaBox.html);
   });
 
 $('.idea-container').on('click', '.delete-button', function() {
