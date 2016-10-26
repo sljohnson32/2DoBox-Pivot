@@ -102,7 +102,6 @@ $('#save-button').on('click', function() {
     ideaCountStorage(ideaCount);
     $('#title-input').val('');
     $('#body-input').val('');
-    $('.idea-container').prepend(newIdeaBox.html);
   });
 
 $('.idea-container').on('click', '.delete-button', function() {
