@@ -4,7 +4,6 @@ $(document).ready(function() {
 });
 
 var ideaCount = 100;
-var defaultQuality = 1;
 var $title = $('#title-input');
 var $body = $('#body-input');
 var $userSearch = $('#search-box');
@@ -14,21 +13,27 @@ var $down = $('.down-button');
 
 //creating new ideabox
 /*jshint multistr: true */
-function NewIdea(title, body, quality) {
-  return "<article class='idea-box'>\
-      <div class='flexer'>\
-        <h2>" + title + "</h2>\
-        <button type='button' name='button' class='delete-button'></button>\
-      </div>\
-      <p>" + body + "</p>\
-      <div class='quality-container'>\
-        <article class='quality'>" + quality + "</article>\
-        <button type='button' name='button' class='up-button'></button>\
-        <button type='button' name='button' class='down-button'></button>\
-        <h4 class='quality-rating'>quality: swill</h4>\
-      </div>\
-  </article>";
+function NewIdea() {
+  this.id = ideaCount;
+  this.title = $title.val();
+  this.body = $body.val();
+  /*jshint multistr: true */
+  this.html =
+    "<article class='idea-box' id=" + "'" + this.id + "'" + ">\
+        <div class='flexer'>\
+          <h2 contenteditable='true'>" + this.title + "</h2>\
+          <button type='button' name='button' class='delete-button'></button>\
+        </div>\
+        <p contenteditable='true'>" + this.body + "</p>\
+        <div class='quality-container'>\
+          <button type='button' name='button' class='up-button'></button>\
+          <button type='button' name='button' class='down-button' disabled ='false'></button>\
+          <h4 class='quality-rating'>quality: swill</h4>\
+        </div>\
+    </article>";
+    ideaCount++;
 }
+
 
 // NewIdea.keypress(function(event){
 //   if (event.which == 13) {
