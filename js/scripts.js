@@ -12,8 +12,6 @@ var $p = $('p');
 var $down = $('.down-button');
 
 //creating new ideabox
-/*jshint multistr: true */
-
 function NewIdea(id, title, body, quality) {
   this.id = id;
   this.title = title;
@@ -22,18 +20,18 @@ function NewIdea(id, title, body, quality) {
 }
 
 function newIdeaBoxCreator(object) {
-  $('.idea-container').prepend("<article id='" + object.id + "' " + "class='idea-box'>\
-      <div class='flexer'>\
-        <h2 contenteditable='true'>" + object.title + "</h2>\
-        <button type='button' name='button' class='delete-button'></button>\
-      </div>\
-      <p contenteditable='true'>" + object.body + "</p>\
-      <div class='quality-container'>\
-        <button type='button' name='button' class='up-button'></button>\
-        <button type='button' name='button' disabled='true' class='down-button'></button>\
-        <h4 class='quality-rating'>" + object.quality + "</h4>\
-      </div>\
-  </article>");
+  $('.idea-container').prepend(`<article id=${object.id} class='idea-box'>
+      <div class='flexer'>
+        <h2 contenteditable='true'>${object.title}</h2>
+        <button type='button' name='button' class='delete-button'></button>
+      </div>
+      <p contenteditable='true'>${object.body}</p>
+      <div class='quality-container'>
+        <button type='button' name='button' class='up-button'></button>
+        <button type='button' name='button' disabled='true' class='down-button'></button>
+        <h4 class='quality-rating'>${object.quality}</h4>
+      </div>
+  </article>`);
 }
 
 //storage functionality
@@ -66,8 +64,7 @@ function loadStorage () {
 function getIdeaCount() {
     if (localStorage.getItem('ideaCountTracker') !== null) {
       ideaCount = JSON.parse(localStorage.getItem('ideaCountTracker'));
-    }
-      else {
+    } else {
         ideaCount = 100;
       }
 }
