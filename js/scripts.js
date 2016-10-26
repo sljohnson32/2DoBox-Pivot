@@ -8,7 +8,7 @@ var defaultQuality = 1;
 var $title = $('#title-input');
 var $body = $('#body-input');
 var $userSearch = $('#search-box');
-var $h2 = $('h2')
+var $h2 = $('h2');
 var $p = $('p');
 var $down = $('.down-button');
 
@@ -97,9 +97,8 @@ $(document).ready(function(){
 
 //button functionality
 $('#save-button').on('click', function() {
-    newIdeaBox = new NewIdea($title.val(), $body.val(), defaultQuality);
-    $('.idea-container').prepend(newIdeaBox);
-    setIdeaStorage(ideaCount, newIdeaBox);
+    $('.idea-container').prepend(NewIdea($title.val(), $body.val(), defaultQuality));
+    setIdeaStorage(ideaCount, NewIdea($title.val(), $body.val(), defaultQuality));
     ideaCount++;
     ideaCountStorage(ideaCount);
     $('#title-input').val('');
