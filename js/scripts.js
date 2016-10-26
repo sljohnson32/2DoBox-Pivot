@@ -5,6 +5,10 @@ $(document).ready(function() {
 var ideaCount = 100;
 var $title = $('#title-input');
 var $body = $('#body-input');
+var $userSearch = $('#search-box');
+var $h2 = $('h2')
+var $p = $('p');
+var $down = $('.down-button');
 
 //creating new ideabox
 function NewIdea() {
@@ -22,7 +26,7 @@ function NewIdea() {
         <div class='quality-container'>\
           <article class='quality'>" + 1 + "</article>\
           <button type='button' name='button' class='up-button'></button>\
-          <button type='button' name='button' class='down-button'></button>\
+          <button type='button' name='button' class='down-button' disabled ='false'></button>\
           <h4 class='quality-rating'>quality: swill</h4>\
         </div>\
     </article>";
@@ -58,9 +62,19 @@ function loadStorage () {
   }
 }
 
-function searchBox () {
-  // User text should do a query search of two elements for simliar text
-}
+$('#search-box').on('keyup change', function () {
+  var user = $userSearch.val();
+  return user;
+});
+
+ // User text should do a query search of two elements for simliar text
+  // Can target $('h2') & $('p') to check against user...
+
+
+  // function search() {
+  //   var user = $userSearch.val();
+  //   return user;
+  // }
 
 //button functionality
 $('#save-button').on('click', function() {
@@ -77,29 +91,33 @@ $('.idea-container').on('click', '.delete-button', function() {
 });
 
 $('.idea-container').on('click', '.up-button', function() {
-    debugger
     var $quality = $(this).siblings('.quality-rating');
     if ($quality.text() === 'quality: swill') {
-      $quality.text('quality: plausible');
+      $quality.text('quality: plausible', false);
+      $('.down-button').prop('disabled', false);
+      $('.up-button').prop('disabled', false);
     }
         else if ($quality.text() === 'quality: plausible') {
           $quality.text('quality: genius');
+          $('.up-button').prop('disabled', false);
     }
           else {
-            $quality.text('quality: swill');
+            $('.up-button').prop('disabled', true);
     }
 });
 
 $('.idea-container').on('click', '.down-button', function() {
-    debugger
     var $quality = $(this).siblings('.quality-rating');
     if ($quality.text() === 'quality: genius') {
       $quality.text('quality: plausible');
+      $('.down-button').prop('disabled', false);
+      $('.up-button').prop('disabled', false);
     }
         else if ($quality.text() === 'quality: plausible') {
           $quality.text('quality: swill');
+          $('.down-button').prop('disabled', false);
     }
           else {
-            $quality.text('quality: genius');
+              $('.down-button').prop('disabled', true);
     }
 });

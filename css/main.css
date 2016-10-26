@@ -131,6 +131,14 @@ h1, h2, .quality-rating {
 }
 
 
+.down-button[disabled]:hover {
+ background: url('../images/downvote.svg') no-repeat;
+}
+
+ .up-button[disabled]:hover {
+  background: url('../images/upvote.svg') no-repeat;
+}
+
 @media (min-width: 650px) {
 
 header {
