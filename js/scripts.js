@@ -1,10 +1,15 @@
 $(document).ready(function() {
   loadStorage();
+  $('#save-button').prop('disabled', true);
 });
 
 var ideaCount = 100;
 var $title = $('#title-input');
 var $body = $('#body-input');
+var $userSearch = $('#search-box');
+var $h2 = $('h2')
+var $p = $('p');
+var $down = $('.down-button');
 
 //creating new ideabox
 function NewIdea() {
@@ -15,14 +20,13 @@ function NewIdea() {
   this.html =
     "<article class='idea-box' id=" + "'" + this.id + "'" + ">\
         <div class='flexer'>\
-          <h2>" + this.title + "</h2>\
+          <h2 contenteditable='true'>" + this.title + "</h2>\
           <button type='button' name='button' class='delete-button'></button>\
         </div>\
-        <p>" + this.body + "</p>\
+        <p contenteditable='true'>" + this.body + "</p>\
         <div class='quality-container'>\
-          <article class='quality'>" + 1 + "</article>\
           <button type='button' name='button' class='up-button'></button>\
-          <button type='button' name='button' class='down-button'></button>\
+          <button type='button' name='button' class='down-button' disabled ='false'></button>\
           <h4 class='quality-rating'>quality: swill</h4>\
         </div>\
     </article>";
@@ -65,9 +69,41 @@ function getIdeaCount() {
       }
 }
 
-function searchBox () {
-  // User text should do a query search of two elements for simliar text
-}
+// $('#search-box').keyup(function search() {
+//   var user = $userSearch.val();
+//   return user;
+// });
+
+$(document).ready(function(){
+ $('#search-box').keyup(function(){
+   var filter = $(this).val(), count = 0;
+   $('article').each(function(){
+     if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+       $(this).hide();
+     } else {
+       $(this).show();
+       count++;
+     }
+   });
+ });
+});
+
+ // User text should do a query search of two elements for simliar text
+  // Can target $('h2') & $('p') to check against user...
+
+
+  // function search() {
+  //   var user = $userSearch.val();
+  //   return user;
+  // }
+
+  $('.all-input').keyup(function saveDisable() {
+    if ($title.val() && $body.val()) {
+      $('#save-button').prop('disabled', false);
+    } else {
+      $('#save-button').prop('disabled', true);
+    }
+  });
 
 //button functionality
 $('#save-button').on('click', function() {
@@ -86,29 +122,33 @@ $('.idea-container').on('click', '.delete-button', function() {
 });
 
 $('.idea-container').on('click', '.up-button', function() {
-    debugger
     var $quality = $(this).siblings('.quality-rating');
     if ($quality.text() === 'quality: swill') {
-      $quality.text('quality: plausible');
+      $quality.text('quality: plausible', false);
+      $('.down-button').prop('disabled', false);
+      $('.up-button').prop('disabled', false);
     }
         else if ($quality.text() === 'quality: plausible') {
           $quality.text('quality: genius');
+          $('.up-button').prop('disabled', false);
     }
           else {
-            $quality.text('quality: swill');
+            $('.up-button').prop('disabled', true);
     }
 });
 
 $('.idea-container').on('click', '.down-button', function() {
-    debugger
     var $quality = $(this).siblings('.quality-rating');
     if ($quality.text() === 'quality: genius') {
       $quality.text('quality: plausible');
+      $('.down-button').prop('disabled', false);
+      $('.up-button').prop('disabled', false);
     }
         else if ($quality.text() === 'quality: plausible') {
           $quality.text('quality: swill');
+          $('.down-button').prop('disabled', false);
     }
           else {
-            $quality.text('quality: genius');
+              $('.down-button').prop('disabled', true);
     }
 });
