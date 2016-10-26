@@ -4,7 +4,6 @@ $(document).ready(function() {
 });
 
 var ideaCount = 100;
-var defaultQuality = 1;
 var $title = $('#title-input');
 var $body = $('#body-input');
 var $userSearch = $('#search-box');
@@ -22,7 +21,6 @@ function NewIdea(title, body, quality) {
       </div>\
       <p>" + body + "</p>\
       <div class='quality-container'>\
-        <article class='quality'>" + quality + "</article>\
         <button type='button' name='button' class='up-button'></button>\
         <button type='button' name='button' class='down-button'></button>\
         <h4 class='quality-rating'>quality: swill</h4>\
@@ -104,9 +102,8 @@ $(document).ready(function(){
 
 //button functionality
 $('#save-button').on('click', function() {
-    ;
-    $('.idea-container').prepend(newIdeaBox);
-    setIdeaStorage(ideaCount, newIdeaBox);
+    $('.idea-container').prepend(NewIdea($title.val(), $body.val(), 1));
+    setIdeaStorage(ideaCount, NewIdea($title.val(), $body.val(), 1));
     ideaCount++;
     ideaCountStorage(ideaCount);
     $('#title-input').val('');
