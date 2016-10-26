@@ -104,8 +104,9 @@ $(document).ready(function(){
 
 //button functionality
 $('#save-button').on('click', function() {
-    $('.idea-container').prepend(NewIdea($title.val(), $body.val(), defaultQuality));
-    setIdeaStorage(ideaCount, NewIdea($title.val(), $body.val(), defaultQuality));
+    ;
+    $('.idea-container').prepend(newIdeaBox);
+    setIdeaStorage(ideaCount, newIdeaBox);
     ideaCount++;
     ideaCountStorage(ideaCount);
     $('#title-input').val('');
