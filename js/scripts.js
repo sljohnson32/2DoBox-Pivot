@@ -113,16 +113,17 @@ $('.idea-container').on('click', '.delete-button', function() {
 $('.idea-container').on('click', '.up-button', function() {
     var $quality = $(this).siblings('.quality-rating');
     if ($quality.text() === 'quality: swill') {
-      $quality.text('quality: plausible', false);
+      $quality.text('quality: plausible');
       $('.down-button').prop('disabled', false);
-      $('.up-button').prop('disabled', false);
+      $(this).prop('disabled', false);
     }
         else if ($quality.text() === 'quality: plausible') {
           $quality.text('quality: genius');
-          $('.up-button').prop('disabled', false);
+          $(this).prop('disabled', false);
+          $('.down-button').prop('disabled', false);
     }
           else {
-            $('.up-button').prop('disabled', true);
+            $(this).prop('disabled', true);
     }
 });
 
@@ -130,14 +131,15 @@ $('.idea-container').on('click', '.down-button', function() {
     var $quality = $(this).siblings('.quality-rating');
     if ($quality.text() === 'quality: genius') {
       $quality.text('quality: plausible');
-      $('.down-button').prop('disabled', false);
-      $('.up-button').prop('disabled', false);
+      $(this).prop('disabled', false);
+      $('up-button').prop('disabled', false);
     }
         else if ($quality.text() === 'quality: plausible') {
           $quality.text('quality: swill');
-          $('.down-button').prop('disabled', false);
+          $(this).prop('disabled', false);
+          $('.up-button').prop('disabled', false);
     }
-          else {
-              $('.down-button').prop('disabled', true);
+          else  {
+              $(this).prop('disabled', true);
     }
 });
