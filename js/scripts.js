@@ -9,7 +9,6 @@ var $body = $('#body-input');
 var $userSearch = $('#search-box');
 var $h2 = $('h2');
 var $p = $('p');
-var $down = $('.down-button');
 
 //creating new ideabox
 function NewIdea(id, title, body, quality) {
@@ -22,10 +21,10 @@ function NewIdea(id, title, body, quality) {
 function newIdeaBoxCreator(object) {
   $('.idea-container').prepend(`<article id=${object.id} class='idea-box'>
       <div class='flexer'>
-        <h2 contenteditable='true'>${object.title}</h2>
+        <h2 class='idea-title' contenteditable='true'>${object.title}</h2>
         <button type='button' name='button' class='delete-button'></button>
       </div>
-      <p contenteditable='true'>${object.body}</p>
+      <p class='idea-body' contenteditable='true'>${object.body}</p>
       <div class='quality-container'>
         <button type='button' name='button' class='up-button'></button>
         <button type='button' name='button' class='down-button'></button>
@@ -63,6 +62,26 @@ function deleteIdeaStorage(id) {
   localStorage.removeItem(id);
 }
 
+//load functions
+function getIdeaCount() {
+    if (localStorage.getItem('ideaCountTracker') !== null) {
+      ideaCount = JSON.parse(localStorage.getItem('ideaCountTracker'));
+    } else {
+      ideaCount = 100;
+      }
+}
+
+function loadStorage () {
+  for (var i = 0; i < localStorage.length; i++) {
+    if (localStorage.key(i) !== 'ideaCountTracker') {
+      var storedInfo = getStorage(localStorage.key(i));
+      newIdeaBoxCreator(storedInfo);
+      checkButtons(storedInfo);
+    }
+  }
+  getIdeaCount();
+}
+
 function checkButtons(object) {
   var id = object.id;
   var $upButton = $(`#${id}`).children().children('.up-button');
@@ -77,40 +96,21 @@ function checkButtons(object) {
   }
 }
 
-
-function loadStorage () {
-  for (var i = 0; i < localStorage.length; i++) {
-    if (localStorage.key(i) !== 'ideaCountTracker') {
-      var storedInfo = getStorage(localStorage.key(i));
-      newIdeaBoxCreator(storedInfo);
-      checkButtons(storedInfo);
-    }
-  }
-  getIdeaCount();
-}
-
-function getIdeaCount() {
-    if (localStorage.getItem('ideaCountTracker') !== null) {
-      ideaCount = JSON.parse(localStorage.getItem('ideaCountTracker'));
-    } else {
-        ideaCount = 100;
-      }
-}
-
+//search
 $(document).ready(function(){
  $('#search-box').keyup(function(){
    var filter = $(this).val(), count = 0;
    $('article').each(function(){
      if ($(this).text().search(new RegExp(filter, "i")) < 0) {
        $(this).hide();
-     } else {
-       $(this).show();
+     } else {$(this).show();
        count++;
      }
    });
  });
 });
 
+//save button disable/enable
   $('.all-input').keyup(function saveDisable() {
     if ($title.val() && $body.val()) {
       $('#save-button').prop('disabled', false);
@@ -119,11 +119,13 @@ $(document).ready(function(){
     }
   });
 
+//enter button to save
   $('.all-input').keypress(function(event){
     if (event.which == 13) {
       event.preventDefault();
       var newIdeaObject = new NewIdea(ideaCount, $title.val(), $body.val(), 'quality: swill');
       newIdeaBoxCreator(newIdeaObject);
+      checkButtons(newIdeaObject);
       setIdeaStorage(ideaCount, newIdeaObject);
       ideaCount++;
       ideaCountStorage(ideaCount);
@@ -184,4 +186,16 @@ $('.idea-container').on('click', '.down-button', function() {
       $upButton.prop('disabled', false);
       updateIdea($currentId, 'quality', "quality: swill");
     }
+});
+
+$('.idea-container').on('blur','.idea-title', function() {
+  var closestID = this.closest('article').id;
+  var newTitle = $(this).text();
+  updateIdea(closestID, 'title', newTitle);
+});
+
+$('.idea-container').on('blur','.idea-body', function() {
+  var closestID = this.closest('article').id;
+  var newBody = $(this).text();
+  updateIdea(closestID, 'body', newBody);
 });
