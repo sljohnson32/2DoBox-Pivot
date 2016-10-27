@@ -199,3 +199,16 @@ $('.idea-container').on('blur','.idea-body', function() {
   var newBody = $(this).text();
   updateIdea(closestID, 'body', newBody);
 });
+
+$('.idea-container').on('keypress','.idea-title', function(event) {
+    if(event.which == 13) {
+      $(this).blur();
+    }
+});
+
+$('.idea-container').on('keypress','.idea-body', function(event) {
+    if(event.which == 13){
+      $(this).blur();
+    }
+
+});
