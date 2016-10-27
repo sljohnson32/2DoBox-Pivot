@@ -82,6 +82,12 @@ function loadStorage () {
   getIdeaCount();
 }
 
+function clearFields() {
+  $('#title-input').val('');
+  $('#body-input').val('');
+  $('#save-button').prop('disabled', true);
+}
+
 function checkButtons(object) {
   var id = object.id;
   var $upButton = $(`#${id}`).children().children('.up-button');
@@ -129,9 +135,7 @@ $(document).ready(function(){
       setIdeaStorage(ideaCount, newIdeaObject);
       ideaCount++;
       ideaCountStorage(ideaCount);
-      $('#title-input').val('');
-      $('#body-input').val('');
-      $('#save-button').prop('disabled', true);
+      clearFields();
     }
   });
 
@@ -143,9 +147,7 @@ $('#save-button').on('click', function() {
     setIdeaStorage(ideaCount, newIdeaObject);
     ideaCount++;
     ideaCountStorage(ideaCount);
-    $('#title-input').val('');
-    $('#body-input').val('');
-    $('#save-button').prop('disabled', true);
+    clearFields();
   });
 
 $('.idea-container').on('click', '.delete-button', function() {
@@ -201,14 +203,9 @@ $('.idea-container').on('blur','.idea-body', function() {
 });
 
 $('.idea-container').on('keypress','.idea-title', function(event) {
-    if(event.which == 13) {
-      $(this).blur();
-    }
+    event.which == 13 ? $(this).blur() : false;
 });
 
 $('.idea-container').on('keypress','.idea-body', function(event) {
-    if(event.which == 13){
-      $(this).blur();
-    }
-
+  event.which == 13 ? $(this).blur() : false;
 });
