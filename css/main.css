@@ -1,11 +1,11 @@
 body {
   font-family: "Open-Sans", sans-serif;
-  text-align: center;
 }
 
 header {
   background: #E5F3F2;
   padding: 5px;
+  text-align: center;
 }
 
 header, h2 {
@@ -23,29 +23,46 @@ article {
 }
 
 article h2 {
-  float: left;
+  display: inline-block;
   font-size: 1.4em;
+  padding: 5px 0px;
+}
+
+input, textarea, #save-button, #search-box {
+  display: block;
+  margin: 20px auto;
+  font-size: 1em;
 }
 
 input, textarea {
   font-family: "Open-Sans", sans-serif;
-  display: block;
   border: 2px solid #D1D3D4;
   color: #939598;
-}
-
-input, p, textarea, #save-button, #search-box {
-  display: block;
-  margin: 20px auto;
   padding: 5px;
   width: 90%;
-  font-size: 1em;
+}
+
+#search-box {
+  width: 88%;
+}
+
+#save-button {
+  background: #00A79D;
+  color: #FFFFFF;
+  border: none;
+  width: 92%;
+  padding: 5px 0px 7px;
 }
 
 p {
+  display: block;
   color: #939598;
-  margin: 30px 0px 20px 0px;
-  padding: 30px 0px 20px 0px;
+  padding: 12px 0px;
+  text-align: left
+}
+
+.flexer {
+  margin-top: 15px;
 }
 
 h1, h2, .quality-rating {
@@ -53,7 +70,7 @@ h1, h2, .quality-rating {
 }
 
 .idea-container {
-margin: 25px;
+margin: 32px;
 }
 
 .idea-header {
@@ -61,34 +78,17 @@ margin: 25px;
 }
 
 .quality-container {
-  padding: 10px 0px 40px 10px;
+  padding: 15px 0px 10px 8px;
+  margin-bottom: 15px;
 }
 
 textarea {
   resize: none;
 }
 
-.flexer {}
-
 #body-input {
   height: 7em;
 }
-
-#search-box {
-  width: 87%;
-}
-
-#save-button {
-  background: #00A79D;
-  color: #FFFFFF;
-  border: none;
-  width: 94%
-}
-
-#save-button:hover {
-  background: #045E55;
-}
-
 
 .up-button {
   background: url('../images/upvote.svg') no-repeat;
@@ -99,7 +99,26 @@ textarea {
   border: none;
   height: 30px;
   width: 30px;
-  margin: -10px;
+  margin: -7px;
+}
+
+.down-button {
+  background: url('../images/downvote.svg') no-repeat;
+  border: none;
+  float: left;
+  height: 30px;
+  width: 30px;
+  margin: -7px 12px;
+}
+
+.delete-button {
+  background: url('../images/delete.svg') no-repeat;
+  float: right;
+  margin: auto;
+}
+
+#save-button:hover {
+  background: #045E55;
 }
 
 .up-button:hover {
@@ -114,24 +133,9 @@ textarea {
   background: url('../images/delete-hover.svg') no-repeat;
 }
 
-.down-button {
-  background: url('../images/downvote.svg') no-repeat;
-  border: none;
-  float: left;
-  height: 30px;
-  width: 30px;
-  margin: -10px 15px;
-}
-
-.delete-button {
-  background: url('../images/delete.svg') no-repeat;
-  float: right;
-  margin: -3px;
-}
-
 .quality-rating {
   display: inline-block;
-  float: left;
+  /*float: left;*/
 }
 
 *:focus {
@@ -151,34 +155,25 @@ input:focus {
   background: url('../images/upvote.svg') no-repeat;
 }
 
-
-
 #save-button[disabled]:hover, #save-button[disabled] {
  background: grey;
 }
 
 @media (min-width: 650px) {
 
-header {
-
-}
-
 input, textarea {
   width: 60%;
 }
-
 
 .idea-container {
   width: 60%;
   margin: 0px auto;
 }
 
-
 #save-button {
-    width: 61%;
+    width: 61.5%;
 }
 
-
 #search-box {
-  width: 59.5%;
+  width: 59%;
 }
