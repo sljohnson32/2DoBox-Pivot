@@ -10,7 +10,6 @@ var $userSearch = $('#search-box');
 var $h2 = $('h2');
 var $p = $('p');
 
-//creating new ideabox
 function NewIdea(id, title, body, quality) {
   this.id = id;
   this.title = title;
@@ -33,7 +32,6 @@ function newIdeaBoxCreator(object) {
   </article>`);
 }
 
-//storage functionality
 function setIdeaStorage(id, object) {
   localStorage.setItem(id, JSON.stringify(object));
 }
@@ -62,13 +60,12 @@ function deleteIdeaStorage(id) {
   localStorage.removeItem(id);
 }
 
-//load functions
 function getIdeaCount() {
-    if (localStorage.getItem('ideaCountTracker') !== null) {
-      ideaCount = JSON.parse(localStorage.getItem('ideaCountTracker'));
-    } else {
-      ideaCount = 100;
-      }
+  if (localStorage.getItem('ideaCountTracker') !== null) {
+    ideaCount = JSON.parse(localStorage.getItem('ideaCountTracker'));
+  } else {
+    ideaCount = 100;
+    }
 }
 
 function loadStorage () {
@@ -102,7 +99,6 @@ function checkButtons(object) {
   }
 }
 
-//search
 $(document).ready(function(){
  $('#search-box').keyup(function(){
    var filter = $(this).val(), count = 0;
@@ -116,31 +112,17 @@ $(document).ready(function(){
  });
 });
 
-//save button disable/enable
-  $('.all-input').keyup(function saveDisable() {
-    if ($title.val() && $body.val()) {
-      $('#save-button').prop('disabled', false);
-    } else {
-      $('#save-button').prop('disabled', true);
-    }
-  });
+$('.all-input').keyup(function saveDisable() {
+  if ($title.val() && $body.val()) {
+    $('#save-button').prop('disabled', false);
+  } else {
+    $('#save-button').prop('disabled', true);
+  }
+});
 
-//enter button to save
-  $('.all-input').keypress(function(event){
-    if (event.which == 13 && $title.val() && $body.val()) {
-      event.preventDefault();
-      var newIdeaObject = new NewIdea(ideaCount, $title.val(), $body.val(), 'quality: swill');
-      newIdeaBoxCreator(newIdeaObject);
-      checkButtons(newIdeaObject);
-      setIdeaStorage(ideaCount, newIdeaObject);
-      ideaCount++;
-      ideaCountStorage(ideaCount);
-      clearFields();
-    }
-  });
-
-//button functionality
-$('#save-button').on('click', function() {
+$('.all-input').keypress(function(event){
+  if (event.which == 13 && $title.val() && $body.val()) {
+    event.preventDefault();
     var newIdeaObject = new NewIdea(ideaCount, $title.val(), $body.val(), 'quality: swill');
     newIdeaBoxCreator(newIdeaObject);
     checkButtons(newIdeaObject);
@@ -148,46 +130,57 @@ $('#save-button').on('click', function() {
     ideaCount++;
     ideaCountStorage(ideaCount);
     clearFields();
-  });
+  }
+});
+
+$('#save-button').on('click', function() {
+  var newIdeaObject = new NewIdea(ideaCount, $title.val(), $body.val(), 'quality: swill');
+  newIdeaBoxCreator(newIdeaObject);
+  checkButtons(newIdeaObject);
+  setIdeaStorage(ideaCount, newIdeaObject);
+  ideaCount++;
+  ideaCountStorage(ideaCount);
+  clearFields();
+});
 
 $('.idea-container').on('click', '.delete-button', function() {
-    var deleteID = $(this).parent().parent().attr('id');
-    localStorage.removeItem(deleteID);
-    $(this).parent().parent().remove();
+  var deleteID = $(this).parent().parent().attr('id');
+  localStorage.removeItem(deleteID);
+  $(this).parent().parent().remove();
 });
 
 $('.idea-container').on('click', '.up-button', function() {
-    var $quality = $(this).siblings('.quality-rating');
-    var $downButton = $(this).parent().children('.down-button');
-    var $currentId = $(this).parent().parent().attr('id');
-    if ($quality.text() === 'quality: swill') {
-      $quality.text('quality: plausible');
-      $(this).prop('disabled', false);
-      $downButton.prop('disabled', false);
-      updateIdea($currentId, 'quality','quality: plausible');
-    } else if ($quality.text() === 'quality: plausible') {
-      $quality.text('quality: genius');
-      $(this).prop('disabled', true);
-      $downButton.prop('disabled', false);
-      updateIdea($currentId, 'quality','quality: genius');
-    }
+  var $quality = $(this).siblings('.quality-rating');
+  var $downButton = $(this).parent().children('.down-button');
+  var $currentId = $(this).parent().parent().attr('id');
+  if ($quality.text() === 'quality: swill') {
+    $quality.text('quality: plausible');
+    $(this).prop('disabled', false);
+    $downButton.prop('disabled', false);
+    updateIdea($currentId, 'quality','quality: plausible');
+  } else if ($quality.text() === 'quality: plausible') {
+    $quality.text('quality: genius');
+    $(this).prop('disabled', true);
+    $downButton.prop('disabled', false);
+    updateIdea($currentId, 'quality','quality: genius');
+  }
 });
 
 $('.idea-container').on('click', '.down-button', function() {
-    var $quality = $(this).siblings('.quality-rating');
-    var $upButton = $(this).parent().children('.up-button');
-    var $currentId = $(this).parent().parent().attr('id');
-    if ($quality.text() === 'quality: genius') {
-      $quality.text('quality: plausible');
-      $(this).prop('disabled', false);
-      $upButton.prop('disabled', false);
-      updateIdea($currentId, 'quality', "quality: plausible");
-    } else if ($quality.text() === 'quality: plausible') {
-      $quality.text('quality: swill');
-      $(this).prop('disabled', true);
-      $upButton.prop('disabled', false);
-      updateIdea($currentId, 'quality', "quality: swill");
-    }
+  var $quality = $(this).siblings('.quality-rating');
+  var $upButton = $(this).parent().children('.up-button');
+  var $currentId = $(this).parent().parent().attr('id');
+  if ($quality.text() === 'quality: genius') {
+    $quality.text('quality: plausible');
+    $(this).prop('disabled', false);
+    $upButton.prop('disabled', false);
+    updateIdea($currentId, 'quality', "quality: plausible");
+  } else if ($quality.text() === 'quality: plausible') {
+    $quality.text('quality: swill');
+    $(this).prop('disabled', true);
+    $upButton.prop('disabled', false);
+    updateIdea($currentId, 'quality', "quality: swill");
+  }
 });
 
 $('.idea-container').on('blur','.idea-title', function() {
@@ -203,14 +196,14 @@ $('.idea-container').on('blur','.idea-body', function() {
 });
 
 $('.idea-container').on('keypress','.idea-title', function(event) {
-    if(event.which == 13) {
-      $(this).blur();
-    }
+  if(event.which == 13) {
+    $(this).blur();
+  }
 });
 
 $('.idea-container').on('keypress','.idea-body', function(event) {
-    if(event.which == 13){
-      $(this).blur();
-    }
+  if(event.which == 13){
+    $(this).blur();
+  }
 
 });
