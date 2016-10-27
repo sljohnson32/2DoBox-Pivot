@@ -127,7 +127,7 @@ $(document).ready(function(){
 
 //enter button to save
   $('.all-input').keypress(function(event){
-    if (event.which == 13) {
+    if (event.which == 13 && $title.val() && $body.val()) {
       event.preventDefault();
       var newIdeaObject = new NewIdea(ideaCount, $title.val(), $body.val(), 'quality: swill');
       newIdeaBoxCreator(newIdeaObject);
@@ -203,9 +203,14 @@ $('.idea-container').on('blur','.idea-body', function() {
 });
 
 $('.idea-container').on('keypress','.idea-title', function(event) {
-    event.which == 13 ? $(this).blur() : false;
+    if(event.which == 13) {
+      $(this).blur();
+    }
 });
 
 $('.idea-container').on('keypress','.idea-body', function(event) {
-  event.which == 13 ? $(this).blur() : false;
+    if(event.which == 13){
+      $(this).blur();
+    }
+
 });
