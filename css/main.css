@@ -157,6 +157,20 @@ input:focus {
  background: grey;
 }
 
+
+:-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #D0D2D3;
+}
+:-moz-placeholder { /* Firefox 19+ */
+  color: #D0D2D3;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #D0D2D3;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #D0D2D3;
+}
+
 @media (min-width: 650px) {
 
 header {

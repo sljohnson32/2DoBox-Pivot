@@ -82,6 +82,12 @@ function loadStorage () {
   getIdeaCount();
 }
 
+function clearFields() {
+  $('#title-input').val('');
+  $('#body-input').val('');
+  $('#save-button').prop('disabled', true);
+}
+
 function checkButtons(object) {
   var id = object.id;
   var $upButton = $(`#${id}`).children().children('.up-button');
@@ -129,9 +135,7 @@ $(document).ready(function(){
       setIdeaStorage(ideaCount, newIdeaObject);
       ideaCount++;
       ideaCountStorage(ideaCount);
-      $('#title-input').val('');
-      $('#body-input').val('');
-      $('#save-button').prop('disabled', true);
+      clearFields();
     }
   });
 
@@ -143,9 +147,7 @@ $('#save-button').on('click', function() {
     setIdeaStorage(ideaCount, newIdeaObject);
     ideaCount++;
     ideaCountStorage(ideaCount);
-    $('#title-input').val('');
-    $('#body-input').val('');
-    $('#save-button').prop('disabled', true);
+    clearFields();
   });
 
 $('.idea-container').on('click', '.delete-button', function() {
@@ -198,4 +200,12 @@ $('.idea-container').on('blur','.idea-body', function() {
   var closestID = this.closest('article').id;
   var newBody = $(this).text();
   updateIdea(closestID, 'body', newBody);
+});
+
+$('.idea-container').on('keypress','.idea-title', function(event) {
+    event.which == 13 ? $(this).blur() : false;
+});
+
+$('.idea-container').on('keypress','.idea-body', function(event) {
+  event.which == 13 ? $(this).blur() : false;
 });
