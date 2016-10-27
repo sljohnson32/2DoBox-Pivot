@@ -21,10 +21,10 @@ function NewIdea(id, title, body, quality) {
 function newIdeaBoxCreator(object) {
   $('.idea-container').prepend(`<article id=${object.id} class='idea-box'>
       <div class='flexer'>
-        <h2 contenteditable='true'>${object.title}</h2>
+        <h2 class='idea-title' contenteditable='true'>${object.title}</h2>
         <button type='button' name='button' class='delete-button'></button>
       </div>
-      <p contenteditable='true'>${object.body}</p>
+      <p class='idea-body' contenteditable='true'>${object.body}</p>
       <div class='quality-container'>
         <button type='button' name='button' class='up-button'></button>
         <button type='button' name='button' class='down-button'></button>
@@ -188,4 +188,14 @@ $('.idea-container').on('click', '.down-button', function() {
     }
 });
 
-$('.idea-container').change()
+$('.idea-container').on('blur','.idea-title', function() {
+  var closestID = this.closest('article').id;
+  var newTitle = $(this).text();
+  updateIdea(closestID, 'title', newTitle);
+});
+
+$('.idea-container').on('blur','.idea-body', function() {
+  var closestID = this.closest('article').id;
+  var newBody = $(this).text();
+  updateIdea(closestID, 'body', newBody);
+});
