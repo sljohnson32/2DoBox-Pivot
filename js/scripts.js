@@ -80,8 +80,8 @@ function loadStorage () {
 }
 
 function clearFields() {
-  $('#title-input').val('');
-  $('#body-input').val('');
+  $title.val('');
+  $body.val('');
   $('#save-button').prop('disabled', true);
 }
 
@@ -99,8 +99,50 @@ function checkButtons(object) {
   }
 }
 
-$(document).ready(function(){
- $('#search-box').keyup(function(){
+function upVote(arg) {
+  var $quality = arg.siblings('.quality-rating');
+  var $downButton = arg.parent().children('.down-button');
+  var $currentId = arg.parent().parent().attr('id');
+  if ($quality.text() === 'quality: swill') {
+    $quality.text('quality: plausible');
+    arg.prop('disabled', false);
+    $downButton.prop('disabled', false);
+    updateIdea($currentId, 'quality','quality: plausible');
+  } else if ($quality.text() === 'quality: plausible') {
+    $quality.text('quality: genius');
+    arg.prop('disabled', true);
+    $downButton.prop('disabled', false);
+    updateIdea($currentId, 'quality','quality: genius');
+  }
+}
+
+function downVote(arg) {
+  var $quality = arg.siblings('.quality-rating');
+  var $upButton = arg.parent().children('.up-button');
+  var $currentId = arg.parent().parent().attr('id');
+  if ($quality.text() === 'quality: genius') {
+    $quality.text('quality: plausible');
+    arg.prop('disabled', false);
+    $upButton.prop('disabled', false);
+    updateIdea($currentId, 'quality', "quality: plausible");
+  } else if ($quality.text() === 'quality: plausible') {
+    $quality.text('quality: swill');
+    arg.prop('disabled', true);
+    $upButton.prop('disabled', false);
+    updateIdea($currentId, 'quality', "quality: swill");
+  }
+}
+
+function mainFunction(obj){
+  newIdeaBoxCreator(obj);
+  checkButtons(obj);
+  setIdeaStorage(ideaCount, obj);
+  ideaCount++;
+  ideaCountStorage(ideaCount);
+  clearFields();
+}
+
+$('#search-box').keyup(function(){
    var filter = $(this).val(), count = 0;
    $('article').each(function(){
      if ($(this).text().search(new RegExp(filter, "i")) < 0) {
@@ -110,7 +152,6 @@ $(document).ready(function(){
      }
    });
  });
-});
 
 $('.all-input').keyup(function saveDisable() {
   if ($title.val() && $body.val()) {
@@ -124,23 +165,13 @@ $('.all-input').keypress(function(event){
   if (event.which == 13 && $title.val() && $body.val()) {
     event.preventDefault();
     var newIdeaObject = new NewIdea(ideaCount, $title.val(), $body.val(), 'quality: swill');
-    newIdeaBoxCreator(newIdeaObject);
-    checkButtons(newIdeaObject);
-    setIdeaStorage(ideaCount, newIdeaObject);
-    ideaCount++;
-    ideaCountStorage(ideaCount);
-    clearFields();
+    mainFunction(newIdeaObject);
   }
 });
 
 $('#save-button').on('click', function() {
   var newIdeaObject = new NewIdea(ideaCount, $title.val(), $body.val(), 'quality: swill');
-  newIdeaBoxCreator(newIdeaObject);
-  checkButtons(newIdeaObject);
-  setIdeaStorage(ideaCount, newIdeaObject);
-  ideaCount++;
-  ideaCountStorage(ideaCount);
-  clearFields();
+  mainFunction(newIdeaObject);
 });
 
 $('.idea-container').on('click', '.delete-button', function() {
@@ -150,38 +181,14 @@ $('.idea-container').on('click', '.delete-button', function() {
 });
 
 $('.idea-container').on('click', '.up-button', function() {
-  var $quality = $(this).siblings('.quality-rating');
-  var $downButton = $(this).parent().children('.down-button');
-  var $currentId = $(this).parent().parent().attr('id');
-  if ($quality.text() === 'quality: swill') {
-    $quality.text('quality: plausible');
-    $(this).prop('disabled', false);
-    $downButton.prop('disabled', false);
-    updateIdea($currentId, 'quality','quality: plausible');
-  } else if ($quality.text() === 'quality: plausible') {
-    $quality.text('quality: genius');
-    $(this).prop('disabled', true);
-    $downButton.prop('disabled', false);
-    updateIdea($currentId, 'quality','quality: genius');
-  }
+  upVote($(this));
 });
 
+
 $('.idea-container').on('click', '.down-button', function() {
-  var $quality = $(this).siblings('.quality-rating');
-  var $upButton = $(this).parent().children('.up-button');
-  var $currentId = $(this).parent().parent().attr('id');
-  if ($quality.text() === 'quality: genius') {
-    $quality.text('quality: plausible');
-    $(this).prop('disabled', false);
-    $upButton.prop('disabled', false);
-    updateIdea($currentId, 'quality', "quality: plausible");
-  } else if ($quality.text() === 'quality: plausible') {
-    $quality.text('quality: swill');
-    $(this).prop('disabled', true);
-    $upButton.prop('disabled', false);
-    updateIdea($currentId, 'quality', "quality: swill");
-  }
+  downVote($(this));
 });
+
 
 $('.idea-container').on('blur','.idea-title', function() {
   var closestID = this.closest('article').id;
@@ -197,13 +204,14 @@ $('.idea-container').on('blur','.idea-body', function() {
 
 $('.idea-container').on('keypress','.idea-title', function(event) {
   if(event.which == 13) {
+    event.preventDefault();
     $(this).blur();
   }
 });
 
 $('.idea-container').on('keypress','.idea-body', function(event) {
   if(event.which == 13){
+    event.preventDefault();
     $(this).blur();
   }
-
 });
