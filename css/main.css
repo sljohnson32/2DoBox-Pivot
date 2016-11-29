@@ -69,11 +69,11 @@ h1, h2, .quality-rating {
   color: #6D6E71;
 }
 
-.idea-container {
+.td-container {
 margin: 32px;
 }
 
-.idea-header {
+.td-header {
   color: #00A79D;
 }
 
@@ -86,7 +86,7 @@ textarea {
   resize: none;
 }
 
-#body-input {
+#task-input {
   height: 7em;
 }
 
@@ -95,7 +95,7 @@ textarea {
   float: left;
 }
 
- .up-button, .delete-button {
+.up-button, .delete-button {
   border: none;
   height: 30px;
   width: 30px;
@@ -178,7 +178,7 @@ input:focus {
     width: 60%;
   }
 
-  .idea-container {
+  .td-container {
     width: 60%;
     margin: 0px auto;
   }
