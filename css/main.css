@@ -174,20 +174,20 @@ input:focus {
 }
 
 @media (min-width: 650px) {
+  input, textarea {
+    width: 60%;
+  }
 
-input, textarea {
-  width: 60%;
-}
+  .idea-container {
+    width: 60%;
+    margin: 0px auto;
+  }
 
-.idea-container {
-  width: 60%;
-  margin: 0px auto;
-}
+  #save-button {
+      width: 61.5%;
+  }
 
-#save-button {
-    width: 61.5%;
-}
-
-#search-box {
-  width: 59%;
+  #search-box {
+    width: 59%;
+  }
 }
