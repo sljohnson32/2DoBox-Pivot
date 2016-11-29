@@ -1,2 +1,2 @@
-# IdeaBox
-IdeaBox by Sam Johnson &amp; Dylan Avery
+# 2DoBox-Pivot
+2DoBox-Pivot by Sam Johnson &amp; Elijah Williams
