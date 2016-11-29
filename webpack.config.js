@@ -14,7 +14,7 @@ module.exports = {
       { test: /\.js$/, exclude: '/node_modules/', loader: 'babel-loader', query: { presets: ['es2015'] } },
       { test: /\.css$/, loader: "style!css" },
       { test: /\.scss$/, loader: "style!css!sass" },
-      { test: /\.svg$/, loader: "url-loader?mimetype=image/svg" }
+      {test: /\.svg/, loader: 'svg-url-loader'}
     ]
   },
   resolve: {
