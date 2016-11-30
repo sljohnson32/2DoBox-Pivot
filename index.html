@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,12 +12,12 @@
     <header>
       <h1><span class="td-header">2Do</span>Box</h1>
       <div class="input-container">
-        <input type="text" name="title" value="" placeholder="Title" id="title-input" class="all-input">
-        <textarea type="textarea" name="task" value="" placeholder="Task" id="task-input" class="all-input"></textarea>
+        <input type="text" aria-label="todo title" name="title" value="" placeholder="Title" id="title-input" class="all-input">
+        <textarea type="textarea" aria-label="todo task description" name="task" value="" placeholder="Task" id="task-input" class="all-input"></textarea>
       </div>
-        <button type="button" name="button" id="save-button">Save</button>
+        <button type="button" name="button" id="save-button" tabindex="0">Save</button>
     </header>
-    <input type="text" name="name" value="" placeholder="Search" id="search-box">
+    <input type="text" name="name" aria-label="search todos" value="" placeholder="Search" id="search-box">
     <section class="td-container">
     </section>
 
