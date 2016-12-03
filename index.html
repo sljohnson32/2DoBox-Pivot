@@ -17,16 +17,20 @@
         <textarea type="textarea" aria-label="todo task description" name="task" value="" placeholder="Task" id="task-input" class="all-input" maxlength="120"></textarea>
         <div>Characters: </div><div id="task-input-char"></div>
       </div>
-        <button type="button" name="button" id="save-button" tabindex="0" disabled>Save</button>
+        <button type="button" name="button" id="save-button" disabled tabindex="0">Save</button>
     </header>
     <input type="text" name="name" aria-label="search todos" value="" placeholder="Search" id="search-box" maxlength="30">
+    
+    <button type="button" id="show-more-todos" aria-label="show more TODOs button" tabindex="0">Show More TODOs...</button>
+
     <section id='filter-container'>
-      <button id='none-filter-button' class='filter-button'>5) None</button>
-      <button id='low-filter-button' class='filter-button'>4) Low</button>
-      <button id='normal-filter-button' class='filter-button'>3) Normal</button>
-      <button id='high-filter-button' class='filter-button'>2) High</button>
-      <button id='critical-filter-button' class='filter-button'>1) Critical</button>
+      <button id='none-filter-button' class='filter-button' aria-label="none filter importance button" tabindex="0">5) None</button>
+      <button id='low-filter-button' class='filter-button' aria-label="none filter importance button" tabindex="0">4) Low</button>
+      <button id='normal-filter-button' class='filter-button' aria-label="none filter importance button" tabindex="0">3) Normal</button>
+      <button id='high-filter-button' class='filter-button' aria-label="none filter importance button" tabindex="0">2) High</button>
+      <button id='critical-filter-button' class='filter-button' aria-label="none filter importance button" tabindex="0">1) Critical</button>
     </section>
+
     <section class="td-container">
     </section>
 
