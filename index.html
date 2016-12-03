@@ -9,15 +9,20 @@
 
   <body>
 
-    <header>
+    <header
       <h1><span class="td-header">2Do</span>Box</h1>
       <div class="input-container">
-        <input type="text" aria-label="todo title" name="title" value="" placeholder="Title" id="title-input" class="all-input">
-        <textarea type="textarea" aria-label="todo task description" name="task" value="" placeholder="Task" id="task-input" class="all-input"></textarea>
+        <input type="text" aria-label="todo title" name="title" value="" placeholder="Title" id="title-input" class="all-input" maxlength="120">
+        <div>Characters: </div><div id="title-input-char"></div>
+        <textarea type="textarea" aria-label="todo task description" name="task" value="" placeholder="Task" id="task-input" class="all-input" maxlength="120"></textarea>
+        <div>Characters: </div><div id="task-input-char"></div>
       </div>
-        <button type="button" name="button" id="save-button" tabindex="0">Save</button>
+        <button type="button" name="button" id="save-button" tabindex="0" disabled>Save</button>
     </header>
-    <input type="text" name="name" aria-label="search todos" value="" placeholder="Search" id="search-box">
+    <input type="text" name="name" aria-label="search todos" value="" placeholder="Search" id="search-box" maxlength="30">
+    <!-- <section id='filter-container'>
+      <button id='completed-filter' class='filter-button'>Completed 2Dos</button>
+    </section> -->
     <section class="td-container">
     </section>
 
