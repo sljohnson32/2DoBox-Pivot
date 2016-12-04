@@ -52,7 +52,7 @@ test.describe('testing ideabox', function() {
     save.click();
 
     // driver.findElement({className: ‘delete-idea’}).click()
-    assert.equal(className: 'td-title', 'this is a title');
+    // assert.equal(className: 'td-title', 'this is a title');
 
     // title.sendKeys('this is a title').then( function() {
     //   return title.getAttribute('value');
