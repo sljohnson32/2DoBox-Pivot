@@ -21,9 +21,11 @@
     </header>
     <input type="text" name="name" aria-label="search todos" value="" placeholder="Search" id="search-box" maxlength="30">
 
-    <button type="button" id="show-more-todos" aria-label="show more TODOs button" tabindex="0">Show More TODOs...</button>
+    <section id="show-container">
+      <button type="button" id="show-more-todos" aria-label="show more TODOs button" tabindex="0">Show More TODOs...</button>
 
-    <button type="button" id="show-completed-todos" aria-label="show completed TODOs button" tabindex="0">Show Completed TODOs</button>
+      <button type="button" id="show-completed-todos" aria-label="show completed TODOs button" tabindex="0">Show Completed TODOs</button>
+    </section>
 
     <section id='filter-container'>
       <button id='none-filter-button' class='filter-button' aria-label="none filter importance button" tabindex="0">5) None</button>
