@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --inline",
     "build": "webpack",
-    "test": "mocha"
+    "test": "mocha test/index.js"
   },
   "repository": {
     "type": "git",
