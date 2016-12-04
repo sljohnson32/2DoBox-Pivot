@@ -46,15 +46,19 @@ input, textarea {
   width: 90%;
 }
 
+.td-box {
+  display: none;
+}
+
 #search-box {
-  width: 88%;
+  width: 95%;
 }
 
 #save-button {
   background: #00A79D;
   color: #FFFFFF;
   border: none;
-  width: 92%;
+  width: 88%;
   padding: 5px 0px 7px;
 }
 
@@ -75,6 +79,7 @@ h2, .importance {
 
 h1 {
   color: #fff;
+  font-size: 40px;
 }
 
 .td-container {
@@ -84,6 +89,20 @@ margin: 32px;
 .td-header {
   color: #3b3b3b;
   font-weight: bold;
+}
+
+#filter-container,
+#show-container {
+  display: flex;
+  justify-content: center;
+  /*width: 50%;*/
+}
+
+.filter-button,
+#show-more-todos,
+#show-completed-todos {
+  height: 25px;
+  margin: 10px;
 }
 
 .importance-container {
@@ -145,11 +164,6 @@ textarea {
 .importance {
   display: inline-block;
   /*float: left;*/
-}
-
-*:focus {
-  box-shadow: none;
-  outline: 0;
 }
 
 input:focus {
