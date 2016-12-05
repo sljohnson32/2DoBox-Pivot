@@ -127,7 +127,7 @@ margin: 32px;
 #show-more-todos-container {
   display: flex;
   justify-content: center;
-  width: 70%;
+  width: 63%;
   margin: auto;
 }
 
@@ -249,8 +249,12 @@ input:focus {
   }
 
   .td-container {
-    width: 90%;
+    width: 100%;
     margin: 0px auto;
+  }
+
+  .td-box {
+    width: 90%;
   }
 
   #filter-container {
@@ -274,6 +278,11 @@ input:focus {
   }
 
   .completed-button {
-    right: 30%;
+    right: 15%;
+    font-size: 8px;
+  }
+
+  #show-more-todos {
+    height: 35px;
   }
 }
