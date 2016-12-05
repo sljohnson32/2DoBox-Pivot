@@ -3,19 +3,29 @@ body {
 }
 
 header {
-  background: #f83b17;
+  background: #e5f3f2;
   padding: 5px;
   text-align: center;
 }
 
-header, h2 {
+header {
   font-family: "Roboto-Slab", serif;
-  font-weight: 800;
+  color: #045e55;
 }
 
-header h1 {
-  margin: 10px auto;
-  font-size: 2.5em;
+#site-name {
+  padding-top: 15px;
+}
+
+.td-header {
+  font-weight: 800;
+  color: #045e55;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+#second-title-text {
+  color: #474747;
 }
 
 article {
@@ -29,37 +39,61 @@ article h2 {
 }
 
 .completed-td {
-  background-color: gray;
+  background-color: #f6f6f6;
 }
 
 input, textarea, #save-button, #search-box {
   display: block;
-  margin: 20px auto;
+  margin: 20px auto 5px;
   font-size: 1em;
+}
+
+.td-task {
+  width: 80%;
+}
+
+.td-title {
+  width: 70%;
+}
+
+#save-button {
+  margin-bottom: 20px;
 }
 
 input, textarea {
   font-family: "Open-Sans", sans-serif;
-  /*border: 2px solid #D1D3D4;*/
-  color: #939598;
+  border: 2px solid #D1D3D4;
+  color: black;
   padding: 5px;
   width: 90%;
 }
 
 .td-box {
   display: none;
+  border-bottom: 2px solid #d1d3d4;
 }
 
 #search-box {
   width: 95%;
 }
 
+button {
+  background: #008478;
+  color: #FFF;
+  border: none;
+}
+
 #save-button {
-  background: #00A79D;
-  color: #FFFFFF;
   border: none;
   width: 88%;
   padding: 5px 0px 7px;
+}
+
+.completed-button {
+  position: absolute;
+  right: 25%;
+  border: none;
+  margin-top: 5px;
 }
 
 p {
@@ -86,16 +120,18 @@ h1 {
 margin: 32px;
 }
 
-.td-header {
-  color: #3b3b3b;
-  font-weight: bold;
-}
-
 #filter-container,
-#show-container {
+#show-container,
+#show-more-todos-container {
   display: flex;
   justify-content: center;
   /*width: 50%;*/
+}
+
+#show-more-todos {
+  text-align: center;
+  width: 40%;
+  margin: 0 auto;
 }
 
 .filter-button,
@@ -104,6 +140,8 @@ margin: 32px;
   height: 25px;
   margin: 10px;
 }
+
+
 
 .importance-container {
   padding: 15px 0px 10px 8px;
@@ -115,7 +153,7 @@ textarea {
 }
 
 #task-input {
-  height: 7em;
+  height: 4em;
 }
 
 .up-button {
@@ -145,7 +183,7 @@ textarea {
   margin: auto;
 }
 
-#save-button:hover {
+button:hover {
   background: #045E55;
 }
 
@@ -167,7 +205,7 @@ textarea {
 }
 
 input:focus {
-  color: #939598;
+  color: black;
 }
 
 .down-button[disabled]:hover {
@@ -178,22 +216,24 @@ input:focus {
   background: url('../images/upvote.svg') no-repeat;
 }
 
-#save-button[disabled]:hover, #save-button[disabled] {
+#save-button[disabled]:hover,
+#save-button[disabled],
+.completed-button[disabled],
+.completed-button[disabled]:hover {
  background: grey;
 }
 
-
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #3b3b3b;
+  color: black;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: #3b3b3b;
+  color: black;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: #3b3b3b;
+  color: black;
 }
 :-moz-placeholder { /* Firefox 18- */
-  color: #3b3b3b;
+  color: black;
 }
 
 @media (min-width: 650px) {
