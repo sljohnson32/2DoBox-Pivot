@@ -9,98 +9,94 @@ describe('new functionality bundle', function () {
   });
 });
 
-test.describe('testing ideabox', function() {
-  this.timeout(10000);
-  test.it('should allow me to add a title and a task', ()=>{
-    const driver = new webdriver.Builder()
+test.describe('testing todobox', ()=>{
+  let driver;
+  beforeEach(()=>{
+    driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
-
     driver.get('http://localhost:8080');
+  });
 
+  test.afterEach(()=>{
+    driver.quit();
+  });
+
+  test.it('should allow me to enter a title and a task', ()=>{
     const title = driver.findElement({name: 'title'});
     const task = driver.findElement({name: 'task'});
 
-    title.sendKeys('this is a title').then(()=>{
+    title.sendKeys('this is a title').then( ()=>{
       return title.getAttribute('value');
-    }).then((value)=>{
+    }).then( (value)=> {
       assert.equal(value, 'this is a title');
     });
 
-    task.sendKeys('this is a task').then(()=>{
+    task.sendKeys('this is a task').then( ()=>{
       return task.getAttribute('value');
-    }).then((value)=>{
+    }).then( (value)=>{
       assert.equal(value, 'this is a task');
     });
-
-    driver.quit();
   });
 
-  test.it('should allow me to submit a title and a task', ()=>{
-    const driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
-
-    driver.get('http://localhost:8080');
-
+  test.it('should be able to save a task', ()=>{
     const title = driver.findElement({name: 'title'});
     const task = driver.findElement({name: 'task'});
-    const save = driver.findElement({name: 'button'});
+    const save = driver.findElement({name: 'save-button'});
 
-    title.sendKeys('this is a title');
-    task.sendKeys('this is a task');
-    save.click();
-
-    // driver.findElement({className: ‘delete-idea’}).click()
-    // assert.equal(className: 'td-title', 'this is a title');
-
-    // title.sendKeys('this is a title').then( function() {
-    //   return title.getAttribute('value');
-    // }).then(function(value){
-    //   assert.equal(value, 'this is a title');
-    // });
-    //
-    // task.sendKeys('this is a task').then( function() {
-    //   return task.getAttribute('value');
-    // }).then(function(value){
-    //   assert.equal(value, 'this is a task');
-    // });
-
-    driver.quit();
+    title.sendKeys('title');
+    task.sendKeys('task');
+    save.click().then(()=>{
+      const cardTitle = driver.findElement({className: 'td-title'});
+      return cardTitle.getText();
+    }).then((text)=>{
+      assert.equal(text, 'title');
+    }).then(()=>{
+      const cardTask = driver.findElement({className: 'td-task'});
+      return cardTask.getText();
+    }).then((text)=>{
+      assert.equal(text, 'task');
+    });
   });
 
-  // test.it('can add multiple ideas', ()=>{
-  //   this.timeout(10000);
-  //   const driver = new webdriver.Builder()
-  //   .forBrowser('chrome')
-  //   .build();
-  //
-  //   driver.get('http://localhost:8080');
-  //
-  //   const title = driver.findElement({name:'title'});
-  //   title.sendKeys('this is a title');
-  //
-  //   const task = driver.findElement({name:'task'});
-  //   task.sendKeys('this is a task');
-  //
-  //   const submit = driver.findElement({name: 'button'});
-  //   submit.click();
-  //
-  //   title.sendKeys('this is a title 2');
-  //
-  //   task.sendKeys('this is a task 2');
-  //
-  //   submit.click();
-  //
-  //   var allIdeas = driver.findElements({tagName: 'article'});
-  //   driver.findElements({tagName:'article'}).then((article) =>{
-  //     assert.equal(article.length, 2);
-  //   });
-  //
-  //
-  //   driver.findElements({tagName: 'article'}).then((article)=>{
-  //     assert.equal(article.length, 1);
-  //   });
-  //   driver.quit();
-  // });
+  test.it('should be able to save and delete a task', ()=>{
+    const title = driver.findElement({name: 'title'});
+    const task = driver.findElement({name: 'task'});
+    const save = driver.findElement({name: 'save-button'});
+
+    title.sendKeys('title');
+    task.sendKeys('task');
+    save.click().then(()=>{
+      const cardTitle = driver.findElement({className: 'td-title'});
+      return cardTitle.getText();
+    }).then((text)=>{
+      assert.equal(text, 'title');
+    }).then(()=>{
+      const cardTask = driver.findElement({className: 'td-task'});
+      return cardTask.getText();
+    }).then((text)=>{
+      assert.equal(text, 'task');
+    });
+    const deleteButton = driver.findElement({className: 'delete-button'});
+    deleteButton.click().then((button)=>{
+      assert.equal(button, undefined);
+    });
+  });
+
+  test.it('should be able to increase importance', ()=>{
+    const title = driver.findElement({name: 'title'});
+    const task = driver.findElement({name: 'task'});
+    const save = driver.findElement({name: 'save-button'});
+
+    title.sendKeys('title');
+    task.sendKeys('task');
+    save.click().then(()=>{
+      const upVoteButton = driver.findElement({className: 'up-button'});
+      const importance = driver.findElement({className: 'importance-rating'});
+      upVoteButton.click();
+      return importance.getText();
+    }).then((text)=>{
+      assert.equal(text, '2) High');
+    });
+  });
 });
