@@ -65,16 +65,18 @@ input, textarea {
   border: 2px solid #D1D3D4;
   color: black;
   padding: 5px;
-  width: 90%;
+  width: 60%;
+}
+
+#search-box {
+  width: 60%;
 }
 
 .td-box {
   display: none;
   border-bottom: 2px solid #d1d3d4;
-}
-
-#search-box {
-  width: 95%;
+  width: 67%;
+  margin: auto;
 }
 
 button {
@@ -85,7 +87,7 @@ button {
 
 #save-button {
   border: none;
-  width: 88%;
+  width: 61%;
   padding: 5px 0px 7px;
 }
 
@@ -125,7 +127,12 @@ margin: 32px;
 #show-more-todos-container {
   display: flex;
   justify-content: center;
-  /*width: 50%;*/
+  width: 63%;
+  margin: auto;
+}
+
+#filter-container {
+  border-bottom: 2px solid #d1d3d4;
 }
 
 #show-more-todos {
@@ -242,8 +249,12 @@ input:focus {
   }
 
   .td-container {
-    width: 90%;
+    width: 100%;
     margin: 0px auto;
+  }
+
+  .td-box {
+    width: 90%;
   }
 
   #filter-container {
@@ -264,5 +275,14 @@ input:focus {
 
   #search-box {
     width: 90%;
+  }
+
+  .completed-button {
+    right: 15%;
+    font-size: 8px;
+  }
+
+  #show-more-todos {
+    height: 35px;
   }
 }
