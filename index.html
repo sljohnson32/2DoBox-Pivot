@@ -10,20 +10,18 @@
   <body>
 
     <header
-      <h1><span class="td-header">2Do</span>Box</h1>
+      <h1 id="site-name"><span class="td-header">2Do</span><span class="td-header" id="second-title-text">Box</span></h1>
       <div class="input-container">
         <input type="text" aria-label="todo title" name="title" value="" placeholder="Title" id="title-input" class="all-input" maxlength="120">
-        <div>Characters: </div><div id="title-input-char">120</div>
+        <span>Characters: </span><span id="title-input-char">120</span>
         <textarea type="textarea" aria-label="todo task description" name="task" value="" placeholder="Task" id="task-input" class="all-input" maxlength="120"></textarea>
-        <div>Characters: </div><div id="task-input-char">120</div>
+        <span>Characters: </span><span id="task-input-char">120</span>
       </div>
         <button type="button" name="save-button" id="save-button" disabled tabindex="0">Save</button>
     </header>
     <input type="text" name="name" aria-label="search todos" value="" placeholder="Search" id="search-box" maxlength="30">
 
     <section id="show-container">
-      <button type="button" id="show-more-todos" aria-label="show more TODOs button" tabindex="0">Show More TODOs...</button>
-
       <button type="button" id="show-completed-todos" aria-label="show completed TODOs button" tabindex="0">Show Completed TODOs</button>
     </section>
 
@@ -37,6 +35,10 @@
 
     <section class='td-container'>
       <article class='not-complete-tds'></article>
+    </section>
+
+    <section id="show-more-todos-container">
+      <button type="button" id="show-more-todos" aria-label="show more TODOs button" tabindex="0">Show More TODOs...</button>
     </section>
 
     <script src="main.bundle.js"></script>
