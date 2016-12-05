@@ -3,37 +3,63 @@ const assert = require('chai').assert;
 var tdUpdates = require('../lib/td-updates');
 
 describe('TD update functionality', function() {
-  context('with default attributes', function() {
+  context('up vote updates', function() {
 
-    xit('should be a function', function() {
-      assert.isFunction(TD);
+    it('should be a function', function() {
+      let value = tdUpdates.upVoteChange;
+      assert.isFunction(value);
     });
 
-    xit('should have an id property', function() {
-      assert.equal(td.id, 100);
+    it('should update importance from 5 to 4', function() {
+      let value = tdUpdates.upVoteChange('5) None');
+      assert.equal(value, '4) Low');
     });
 
-    xit('should have a title property', function() {
-      assert.equal(td.title, 'Test Title');
+    it('should update importance from 4 to 3', function() {
+      let value = tdUpdates.upVoteChange('4) Low');
+      assert.equal(value, '3) Normal');
     });
 
-    xit('should have a task property', function() {
-      assert.equal(td.task, 'Test Task');
+    it('should update importance from 3 to 2', function() {
+      let value = tdUpdates.upVoteChange('3) Normal');
+      assert.equal(value, '2) High');
     });
 
-    xit('should have a completed property set to false as default', function() {
-      assert.equal(td.completed, false);
-    });
-
-    xit('should have an importance property set to normal as default', function() {
-      assert.equal(td.importance, '3) Normal');
+    it('should update importance from 2 to 1', function() {
+      let value = tdUpdates.upVoteChange('2) High');
+      assert.equal(value, '1) Critical');
     });
   });
 
-  context('with updated importance property', function() {
-  
-    xit('should have an importance property set to 1) Critical when passed in as an argument', function() {
-      assert.equal(td.importance, '1) Critical');
+  context('down vote updates', function() {
+
+    it('should be a function', function() {
+      assert.isFunction(tdUpdates.downVoteChange);
+    });
+
+    it('should update importance from 1 to 2', function() {
+      let value = tdUpdates.downVoteChange('1) Critical');
+      assert.equal(value, '2) High');
+    });
+
+    it('should update importance from 2 to 3', function() {
+      let value = tdUpdates.downVoteChange('2) High');
+      assert.equal(value, '3) Normal');
+    });
+
+    it('should update importance from 3 to 4', function() {
+      let value = tdUpdates.downVoteChange('3) Normal');
+      assert.equal(value, '4) Low');
+    });
+
+    it('should update importance from 4 to 5', function() {
+      let value = tdUpdates.downVoteChange('4) Low');
+      assert.equal(value, '5) None');
+    });
+
+    it('should update importance from 1 to 2', function() {
+      let value = tdUpdates.downVoteChange('1) Critical');
+      assert.equal(value, '2) High');
     });
   });
 });
