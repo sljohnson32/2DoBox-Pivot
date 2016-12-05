@@ -32,10 +32,31 @@ describe('New td object', function() {
   });
 
   context('with updated importance property', function() {
-    let td = new TD(100, 'Test Title', 'Test Task', '1) Critical');
 
     it('should have an importance property set to 1) Critical when passed in as an argument', function() {
+      let td = new TD(100, 'Test Title', 'Test Task', '1) Critical');
       assert.equal(td.importance, '1) Critical');
     });
+
+    it('should have an importance property set to 2) High when passed in as an argument', function() {
+      let td = new TD(100, 'Test Title', 'Test Task', '2) High');
+      assert.equal(td.importance, '2) High');
+    });
+
+    it('should have an importance property set to 3) Normal when passed in as an argument', function() {
+      let td = new TD(100, 'Test Title', 'Test Task', '3) Normal');
+      assert.equal(td.importance, '3) Normal');
+    });
+
+    it('should have an importance property set to 4) Low when passed in as an argument', function() {
+      let td = new TD(100, 'Test Title', 'Test Task', '4) Low');
+      assert.equal(td.importance, '4) Low');
+    });
+
+    it('should have an importance property set to 5) None when passed in as an argument', function() {
+      let td = new TD(100, 'Test Title', 'Test Task', '5) None');
+      assert.equal(td.importance, '5) None');
+    });
+
   });
 });
