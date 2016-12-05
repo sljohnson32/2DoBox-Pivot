@@ -60,5 +60,5 @@ describe('TD utilities functionality', function() {
       tdUtilities.showMoreTDs();
       assert.equal(tdShowEnd, 10);
     });
-  });
+  });  
 });
