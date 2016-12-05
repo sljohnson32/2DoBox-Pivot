@@ -236,21 +236,33 @@ input:focus {
   color: black;
 }
 
-@media (min-width: 650px) {
+@media (max-width: 650px) {
   input, textarea {
-    width: 60%;
+    width: 90%;
   }
 
   .td-container {
-    width: 60%;
+    width: 90%;
     margin: 0px auto;
   }
 
+  #filter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    margin: auto;
+  }
+/*
+  .filter-button {
+    display: block;
+  }*/
+
   #save-button {
-      width: 61.5%;
+      width: 94%;
   }
 
   #search-box {
-    width: 59%;
+    width: 90%;
   }
 }
