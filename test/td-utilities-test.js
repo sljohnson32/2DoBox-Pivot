@@ -9,12 +9,6 @@ describe('TD utilities functionality', function() {
       let value = tdUtilities.checkButtons;
       assert.isFunction(value);
     });
-
-    // it('should have an id', function() {
-    //   let obj = {id: 100};
-    //   let value = tdUtilities.checkButtons(obj);
-    //   assert.equal(id, 100);
-    // });
   });
 
   context('clearFields', function() {
@@ -38,16 +32,33 @@ describe('TD utilities functionality', function() {
     });
   });
 
-  // context('incrementTDCount', function() {
-  //
-  //   it('should be a function', function() {
-  //     let value = tdUtilities.getTDCount;
-  //     assert.isFunction(tdUtilities.getTDCount);
-  //   });
-  //
-  //   it('should return tdCount', function() {
-  //     tdUtilities.getTDCount();
-  //     assert.equal(tdUtilities.getTDCount(), 100);
-  //   });
-  // });
+  context('incrementTDCount', function() {
+
+    it('should be a function', function() {
+      let value = tdUtilities.incrementTDCount;
+      assert.isFunction(tdUtilities.incrementTDCount);
+    });
+  });
+
+  context('loadCompletes', function() {
+
+    it('should be a function', function() {
+      let value = tdUtilities.loadCompletes;
+      assert.isFunction(tdUtilities.loadCompletes);
+    });
+  });
+
+  context('showMoreTDs', function() {
+
+    it('should be a function', function() {
+      let value = tdUtilities.showMoreTDs;
+      assert.isFunction(tdUtilities.showMoreTDs);
+    });
+
+    it('should add 10', function() {
+      let tdShowEnd = 10;
+      tdUtilities.showMoreTDs();
+      assert.equal(tdShowEnd, 10);
+    });
+  });  
 });
