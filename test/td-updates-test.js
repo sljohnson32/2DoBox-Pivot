@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 const assert = require('chai').assert;
-var tdUpdates = require('../lib/td-updates');
+let tdUpdates = require('../lib/td-updates');
 
 describe('TD update functionality', function() {
   context('up vote updates', function() {
