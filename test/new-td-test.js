@@ -1,10 +1,10 @@
 /*jshint esversion: 6 */
 const assert = require('chai').assert;
-var TD = require('../lib/new-td');
+let TD = require('../lib/new-td');
 
 describe('New td object', function() {
   context('with default attributes', function() {
-    var td = new TD(100, 'Test Title', 'Test Task');
+    let td = new TD(100, 'Test Title', 'Test Task');
 
     it('should be a function', function() {
       assert.isFunction(TD);
@@ -32,7 +32,7 @@ describe('New td object', function() {
   });
 
   context('with updated importance property', function() {
-    var td = new TD(100, 'Test Title', 'Test Task', '1) Critical');
+    let td = new TD(100, 'Test Title', 'Test Task', '1) Critical');
 
     it('should have an importance property set to 1) Critical when passed in as an argument', function() {
       assert.equal(td.importance, '1) Critical');
